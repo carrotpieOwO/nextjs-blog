@@ -21,8 +21,8 @@ export default async function List() {
 
 
     return (
-        <div className="w-16 md:w-32 lg:w-48">
+        <>
             <ListItem posts={newResult} />
-        </div>
+        </>
     )
 }

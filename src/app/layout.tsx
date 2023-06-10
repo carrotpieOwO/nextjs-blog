@@ -2,8 +2,10 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
-import LogoutBtn from './login/LogoutBtn'
+import LogoutBtn from './components/LogoutBtn'
 import Link from 'next/link'
+import Hamburger from './components/Hamburger'
+import Menu from './components/Menu'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -34,10 +36,16 @@ export default async function RootLayout({children,}: { children: React.ReactNod
                     </>
                   }
                 </div>
-                <div className='md:hidden flex items-center'>menu</div>
+                <div className='md:hidden'>
+                 {
+                    session && session.user?.name === 'carrotpieOwO' &&
+                    <Hamburger />
+                  }
+                </div>
               </div>
             </nav>
           </div>
+          <Menu />
         </header>
         {children}
       </body>
