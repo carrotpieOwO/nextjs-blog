@@ -1,5 +1,5 @@
 import { connectDB } from "@/util/database"
-import ListItem from "./ListItem"
+// import ListItem from "./ListItem"
 
 
 export const revalidate = 60; // 60초 단위로 캐싱, 페이지단위로 캐싱가능
@@ -22,7 +22,7 @@ export default async function List() {
 
     return (
         <>
-            <ListItem posts={newResult} />
+            {/* <ListItem posts={newResult} /> */}
         </>
     )
 }

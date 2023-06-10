@@ -4,8 +4,17 @@ import Image from "next/image";
 import Link from "next/link";
 
 type DataType = {
-    posts: Record<string, string>[]
+    posts: {
+        _id: string,
+        title: string,
+        content: string,
+        thumbnail: string,
+        tags: string[],
+        createdTime: string
+    }[]
 }
+
+
 
 export default function ListItem({posts}: DataType) {
     console.log('posts', posts)
@@ -21,6 +30,12 @@ export default function ListItem({posts}: DataType) {
                             <div className="mx-auto max-w-md">
                                 <div className="divide-y divide-gray-300/50">
                                     <div className="pt-8 text-base font-semibold leading-7">
+                                        {
+                                            post.tags?.map(tag => 
+                                                <p key={`${post._id}-${tag}`}>{tag}</p>
+                                            )
+                                        }
+                                        <p>{post.createdTime}</p>
                                         <p className="text-gray-900">{post.title}</p>
                                     </div>
                                 </div>
