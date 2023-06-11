@@ -2,6 +2,7 @@ import { Post } from "@/util"
 import { connectDB } from "@/util/database"
 import { ObjectId, WithId } from "mongodb"
 import Link from "next/link"
+import DeleteBtn from "./DeleteBtn"
 
 type DetailProps = {
     params: { id: string }
@@ -33,7 +34,7 @@ export default async function Detail({params} : DetailProps) {
                 <div className="flex gap-3">
                     <p>{result.author}</p>
                     <Link href={`/edit/${params.id}`}>수정</Link>
-                    <button>삭제</button>
+                    <DeleteBtn deleteId={params.id} images={result.images}/>
                 </div>
             </div>
             

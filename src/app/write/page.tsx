@@ -56,7 +56,7 @@ export default function Write() {
             content: content,
             thumbnail: thumbnail,
             tags: tags,
-            images: images,
+            images: images.current,
             createdTime: dayjs().format('YYYY-MM-DDTHH:mm:ss')
         }
 

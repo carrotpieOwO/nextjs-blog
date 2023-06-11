@@ -5,9 +5,10 @@ interface Post {
     title: string,
     content: string,
     thumbnail?: string,
+    images?: Images[],
     tags?: string[],
     author?: string,
-    createdTime?: string
+    createdTime?: string,
 }
 
 interface Images {
