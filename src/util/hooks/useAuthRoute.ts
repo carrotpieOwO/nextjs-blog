@@ -10,6 +10,8 @@ export const useAuthRoute = () => {
                 .then(res => {
                     if(res.data !== 'carrotpieOwO') {
                         router.replace('/')
+                    } else {
+                        return res.data
                     }
                 })
                 .catch(error => {

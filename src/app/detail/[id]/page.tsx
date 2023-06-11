@@ -1,6 +1,8 @@
+import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { Post } from "@/util"
 import { connectDB } from "@/util/database"
 import { ObjectId, WithId } from "mongodb"
+import { getServerSession } from "next-auth"
 import Link from "next/link"
 import DeleteBtn from "./DeleteBtn"
 
@@ -9,7 +11,8 @@ type DetailProps = {
 }
 
 export default async function Detail({params} : DetailProps) {
-    
+    let session = await getServerSession(authOptions) // 현재 접속한 세션 정보
+
     const db = (await connectDB).db('ha0peno')
     const result:WithId<Post> | null = await db.collection<Post>('post').findOne({ _id: new ObjectId(params.id) })
     
@@ -33,8 +36,13 @@ export default async function Detail({params} : DetailProps) {
                 <p>{result.createdTime}</p>
                 <div className="flex gap-3">
                     <p>{result.author}</p>
-                    <Link href={`/edit/${params.id}`}>수정</Link>
-                    <DeleteBtn deleteId={params.id} images={result.images}/>
+                    {
+                        session?.user?.name === 'carrotpieOwO' &&
+                        <>
+                            <Link href={`/edit/${params.id}`}>수정</Link>
+                            <DeleteBtn deleteId={params.id} images={result.images}/>
+                        </>
+                    }
                 </div>
             </div>
             
