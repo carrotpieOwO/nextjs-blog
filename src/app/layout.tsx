@@ -2,10 +2,10 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
-import LogoutBtn from './components/LogoutBtn'
+import LogoutBtn from './components/nav/LogoutBtn'
 import Link from 'next/link'
-import Hamburger from './components/Hamburger'
-import Menu from './components/Menu'
+import Hamburger from './components/nav/Hamburger'
+import Menu from './components/nav/Menu'
 
 const inter = Inter({ subsets: ['latin'] })
 

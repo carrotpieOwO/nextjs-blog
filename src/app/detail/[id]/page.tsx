@@ -32,7 +32,7 @@ export default async function Detail({params} : DetailProps) {
                 <p>{result.createdTime}</p>
                 <div className="flex gap-3">
                     <p>{result.author}</p>
-                    <button>수정</button>
+                    <Link href={`/edit/${params.id}`}>수정</Link>
                     <button>삭제</button>
                 </div>
             </div>

@@ -7,14 +7,14 @@ interface Props {
     setTags: Dispatch<SetStateAction<string[]>>;
 }
 
-export default function Thumbnail ({ tags, setTags }: Props) {
+export default function Tag ({ tags, setTags }: Props) {
     const [ input, setInput ] = useState('');
 
     const handleKeyup = (e: React.KeyboardEvent<HTMLInputElement>) => {
         const { key } = e;
         const tag = input.replace(/[\s,]+/g, "");
       
-        console.log('tags', tags, tag)
+        
         if (key === ',') {
           e.preventDefault();
           !tags.includes(tag) && tag.length && setTags(prevState => [...prevState, tag]);
@@ -36,6 +36,7 @@ export default function Thumbnail ({ tags, setTags }: Props) {
             />
             <div className="flex gap-3">
                 {
+                    tags &&
                     tags.map((tag, index) => 
                         <div key={tag} className="background-black">
                             {tag}
