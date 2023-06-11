@@ -1,29 +1,20 @@
 'use client'
 
+import { Post } from "@/util";
 import Image from "next/image";
 import Link from "next/link";
 
-type DataType = {
-    posts: {
-        _id: string,
-        title: string,
-        content: string,
-        thumbnail: string,
-        tags: string[],
-        createdTime: string
-    }[]
+interface Props {
+    posts: Post[]
 }
 
-
-
-export default function ListItem({posts}: DataType) {
-    console.log('posts', posts)
+export default function ListItem({posts}: Props) {
     return (
         <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-4">
             {
                 posts.map( post =>
-                    <Link key={post._id} href={`/detail/${post._id}`}>
-                        <div className="relative bg-white px-6 pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto md:max-w-lg sm:rounded-lg sm:px-10">
+                    <Link key={post._id as string} href={`/detail/${post._id}`}>
+                        <div className="relative bg-white pt-10 pb-8 shadow-xl ring-1 ring-gray-900/5 sm:mx-auto md:max-w-lg sm:rounded-lg sm:px-10">
                             {
                                 post.thumbnail && <Image src={post.thumbnail} alt="" width={300} height={300}/>
                             }

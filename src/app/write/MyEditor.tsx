@@ -6,6 +6,7 @@ import colorSyntax from '@toast-ui/editor-plugin-color-syntax'
 import { storage } from '@/util/firebase/config';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { PreviewStyle } from '@toast-ui/editor';
+import { Images } from '@/util';
 
 const toolbarItems = [
     ['heading', 'bold', 'italic', 'strike'],
@@ -17,10 +18,6 @@ const toolbarItems = [
     ['scrollSync'],
 ];
 
-interface Images {
-  fileName: string;
-  url: string;
-}
 interface Props {
   editorRef: React.RefObject<Editor>
   setImages: Dispatch<SetStateAction<Images[] | undefined>>

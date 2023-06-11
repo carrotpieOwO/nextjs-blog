@@ -1,4 +1,5 @@
 'use client';
+import { Images } from '@/util';
 import { storage } from '@/util/firebase/config';
 import { Editor } from '@toast-ui/react-editor';
 import axios from 'axios';
@@ -25,10 +26,6 @@ const findMissingUrls = (str: string, images?: Images[]): string[] => {
     return missingUrls;
 };
 
-interface Images {
-    fileName: string;
-    url: string;
-}
 export default function Write() {
     const [ title, setTitle ] = useState('');
     const [ tags, setTags ] = useState<string[]>([]);
