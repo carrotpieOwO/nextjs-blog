@@ -18,7 +18,7 @@ export default async function Home() {
   })
 
   return (
-    <main className="p-10 md:p-20 lg:p-30">
+    <main className="p-4 sm:p-10 md:p-20 lg:p-30">
       <div className='lg:px-20 xl:px-0 max-w-7xl mx-auto'>
         <ListItem posts={newResult} />
       </div>
