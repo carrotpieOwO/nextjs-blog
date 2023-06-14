@@ -12,6 +12,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'ha0peno BLOG❤️',
   description: '하용피뇨 front-end 기술 블로그',
+  icons: '../app/favicon.ico'
 }
 
 export default async function RootLayout({children,}: { children: React.ReactNode }) {

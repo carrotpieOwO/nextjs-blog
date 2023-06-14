@@ -69,8 +69,6 @@ export default function Edit({params} : Props) {
         // 에디터를 통해 등록한 후 최종 등록 정네 삭제한 이미지 정보를 찾는다.
         const missingFiles = findMissingUrls(content!, images.current);
 
-        console.log('missingfiles', missingFiles)
-        console.log('images', images)
         if(missingFiles) {
             // 최종적으로 사용하지 않은 이미지들은 storage에서 삭제
             missingFiles.forEach(async fileName => {
