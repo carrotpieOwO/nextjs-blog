@@ -1,3 +1,4 @@
+import Tag from "@/app/components/common/Tag"
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { Post } from "@/util"
 import { connectDB } from "@/util/database"
@@ -26,12 +27,12 @@ export default async function Detail({params} : DetailProps) {
 
     return (
         <div className="p-10 md:p-20 lg:p-30 mx-auto max-w-6xl">
-            <h4>{result.title}</h4>
             {
                 result.tags?.map( tag =>
-                    <span key={tag}>{tag}</span>
+                    <Tag key={tag} type="md">{tag}</Tag>
                 )
             }
+            <h4>{result.title}</h4>
             <div className="flex justify-between">
                 <p>{result.createdTime}</p>
                 <div className="flex gap-3">

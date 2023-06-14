@@ -3,6 +3,7 @@
 import { Post } from "@/util";
 import dayjs from "dayjs";
 import Link from "next/link";
+import Tag from "./common/Tag";
 
 interface Props {
     posts: Post[]
@@ -33,11 +34,7 @@ export default function ListItem({posts}: Props) {
                                     <div className="flex">
                                     {
                                         post.tags?.map(tag => 
-                                            <span key={`${post._id}-${tag}`}
-                                                className="bg-pink-100 text-pink-600 text-xs font-medium mr-2 px-2.5 py-0.5 rounded"
-                                            >
-                                                {tag}
-                                            </span>
+                                            <Tag type="md" key={`${post._id}-${tag}`}>{tag}</Tag>
                                         )
                                     }
                                     </div>
