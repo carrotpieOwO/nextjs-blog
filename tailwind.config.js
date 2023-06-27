@@ -9,8 +9,45 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'main': 'url("/images/sailor-monn-wallpaper-preview.jpg")'
+      },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            "pre code::before": {
+              "padding-left": "unset"
+            },
+            "pre code::after": {
+              "padding-right": "unset"
+            },
+            // "pre": {
+            //   backgroundColor: theme("colors.pink.100"),
+            //   color:  theme("colors.slate.600")
+            // },
+            code: {
+              backgroundColor: theme("colors.pink.100"),
+              color: "#DD1144",
+              fontWeight: "400",
+              "border-radius": "0.25rem"
+            },
+            "code::before": {
+              content: '""',
+              "padding-left": "0.25rem"
+            },
+            "code::after": {
+              content: '""',
+              "padding-right": "0.25rem"
+            }
+          },
+        },
+      }),
+    },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+    
+  ],
 }
 

@@ -2,10 +2,13 @@ import Tag from "@/app/components/common/Tag"
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { Post } from "@/util"
 import { connectDB } from "@/util/database"
+import dayjs from "dayjs"
 import { ObjectId, WithId } from "mongodb"
 import { getServerSession } from "next-auth"
 import Link from "next/link"
 import DeleteBtn from "./DeleteBtn"
+import PrevNext from "./PrevNext"
+import Toc from "./Toc"
 
 type DetailProps = {
     params: { id: string }
@@ -17,7 +20,6 @@ export default async function Detail({params} : DetailProps) {
     const db = (await connectDB).db('ha0peno')
     const result:WithId<Post> | null = await db.collection<Post>('post').findOne({ _id: new ObjectId(params.id) })
     
-    
     const prevPost = await db.collection<Post>('post').findOne({ createdTime: { $lt: result!.createdTime } }, { projection: { _id: 1, title: 1 }, sort: { createdTime: -1 } });    
     const nextPost = await db.collection<Post>('post').findOne({ createdTime: { $gt: result!.createdTime } }, { projection: { _id: 1, title: 1 }, sort: { createdTime: 1 } });
 
@@ -26,17 +28,19 @@ export default async function Detail({params} : DetailProps) {
     }
 
     return (
-        <div className="p-10 md:p-20 lg:p-30 mx-auto max-w-6xl">
+        <div className="p-5 sm:p-10 md:p-20 lg:p-30 mx-auto max-w-6xl">
+            <div className="flex items-center mb-7">
             {
                 result.tags?.map( tag =>
                     <Tag key={tag} type="md">{tag}</Tag>
                 )
             }
-            <h4>{result.title}</h4>
-            <div className="flex justify-between">
-                <p>{result.createdTime}</p>
+            </div>
+            <h4 className="font-semibold text-4xl mb-5">{result.title}</h4>
+            <div className="flex items-center justify-between pb-7 mb-16 border-b border-gray-400">
+                <p className="text-sm sm:text-md text-gray-500">{dayjs(result.createdTime).format('YYYY. MM. DD.')}</p>
                 <div className="flex gap-3">
-                    <p>{result.author}</p>
+                    <p className="text-sm sm:text-md text-gray-500">by. {result.author}</p>
                     {
                         session?.user?.name === 'carrotpieOwO' &&
                         <>
@@ -47,14 +51,16 @@ export default async function Detail({params} : DetailProps) {
                 </div>
             </div>
             
-            <div dangerouslySetInnerHTML={{__html: result!.content}} />
+            {/* <Content html={result!.content}/> */}
+            <div className="prose max-w-none " dangerouslySetInnerHTML={{__html: result!.content}} />
+            <Toc htmlString={result!.content} />
             
-            <div className="flex justify-between">
+            <div className="flex justify-between gap-3">
                 {
-                    prevPost && <Link href={`/detail/${prevPost._id}`}>{ prevPost.title }</Link>
+                    prevPost &&  <PrevNext url={`/detail/${prevPost._id}`} content={prevPost.title} direction="left" />
                 }
                 {
-                    nextPost && <Link href={`/detail/${nextPost._id}`}>{ nextPost.title }</Link>
+                    nextPost &&  <PrevNext url={`/detail/${nextPost._id}`} content={nextPost.title} direction="right" />
                 }
             </div>
         </div>
