@@ -24,7 +24,7 @@ export default function ListItem({posts}: Props) {
             {
                 posts.map( post =>
                     <Link key={post._id as string} href={`/detail/${post._id}`}>
-                        <div className="relative bg-white pb-10 shadow-md ring-1 ring-gray-900/5 sm:mx-auto md:max-w-lg sm:rounded-lg duration-300 hover:scale-105">
+                        <div className="relative bg-white dark:bg-gray-800 pb-10 shadow-md ring-1 ring-gray-900/5 sm:mx-auto md:max-w-lg sm:rounded-lg duration-300 hover:scale-105">
                             {
                                 post.thumbnail && 
                                 <div className="bg-cover bg-no-repeat bg-center h-64" style={{backgroundImage: `url(${post.thumbnail})`}}></div>
@@ -38,7 +38,7 @@ export default function ListItem({posts}: Props) {
                                         )
                                     }
                                     </div>
-                                    <h2 className="text-gray-900 text-xl my-3">{post.title}</h2>
+                                    <h2 className="text-gray-900 dark:text-white text-xl my-3">{post.title}</h2>
                                     <div className="text-gray-500 text-base font-normal mb-5 leading-normal text-ellipsis overflow-hidden line-clamp-3 h-18">
                                         {
                                             parseContentFromHTML(post.content)

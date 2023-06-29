@@ -35,7 +35,7 @@ export default async function List({params}:Props) {
 
 
     return (
-        <div className="p-4 sm:p-10 md:p-20 lg:p-30 bg-pink-50 min-h-[calc(100vh-83px)]">
+        <div className="p-4 sm:p-10 md:p-20 lg:p-30 bg-pink-50 dark:bg-gray-900 min-h-[calc(100vh-83px)]">
             <div className="text-center mb-20">
                 <div className="text-5xl font-extrabold mb-4">ha0 log</div>
                 <p className="text-center text-gray-600">~살아남기 위한 고군분투를 기록하다~</p>

@@ -50,7 +50,7 @@ export default function Toc({ htmlString }: {htmlString: string}) {
     }, [scrollPosition, tocList]);
 
     return (
-        <div className="sticky top-28 p-10 rounded-lg shadow bg-white  bg-opacity-50">
+        <div className="sticky top-28 p-10 rounded-lg shadow bg-white dark:bg-gray-800 bg-opacity-50">
         {
             tocList.map(toc => 
                 <div key={toc.id} 

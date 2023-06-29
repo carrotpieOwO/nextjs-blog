@@ -51,8 +51,8 @@ export default async function Detail({params} : DetailProps) {
     const modifiedHtmlString = dom.serialize();
 
     return (
-        <main className="bg-pink-50 pt-10 pb-20 px-10 h-fit">
-            <div className="mt-5 py-2 px-5 sm:p-10 md:p-20 lg:p-30 mx-auto max-w-5xl xl:max-w-6xl h-fit relative bg-white shadow-md rounded-lg">
+        <main className="bg-pink-50 dark:bg-gray-900 pt-10 pb-20 px-10 h-fit">
+            <div className="mt-5 py-2 px-5 sm:p-10 md:p-20 lg:p-30 mx-auto max-w-5xl xl:max-w-6xl h-fit relative bg-white dark:bg-gray-800 shadow-md rounded-lg">
                 <div className="hidden 2xl:block absolute h-[calc(100%-250px)] top-[250px] right-[-350px] max-w-xs">
                     <Toc htmlString={ modifiedHtmlString } />
                 </div>
@@ -77,7 +77,7 @@ export default async function Detail({params} : DetailProps) {
                         }
                     </div>
                 </div>
-                <div className="prose max-w-none" dangerouslySetInnerHTML={{__html: modifiedHtmlString}} />
+                <div className="prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{__html: modifiedHtmlString}} />
                 <div className="mt-20 flex justify-between gap-3">
                 {
                     prevPost &&  <PrevNext url={`/detail/${prevPost._id}`} content={prevPost.title} direction="left" />

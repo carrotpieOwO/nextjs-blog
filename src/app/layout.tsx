@@ -6,6 +6,8 @@ import LogoutBtn from './components/nav/LogoutBtn'
 import Link from 'next/link'
 import Hamburger from './components/nav/Hamburger'
 import Menu from './components/nav/Menu'
+import Providers from './Provider'
+import DarkModeBtn from './components/nav/DarkModeBtn'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,38 +19,40 @@ export const metadata = {
 
 export default async function RootLayout({children,}: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);
-  console.log('session', session)
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header>
-          <div className='mx-auto border-b-2'>
-            <nav className='flex justify-between px-10 py-7'>
-              <Link className='flex items-center' href="/">하용피뇨</Link>
-              <div className='flex items-center space-x-1'>
-                <a href='https://github.com/carrotpieOwO'>gitHub</a>
-                <div className='hidden md:flex items-center space-x-1'>
+        <Providers>
+          <header>
+            <div className='mx-auto border-b-2 border-gray-200 dark:border-gray-900'>
+              <nav className='flex justify-between px-10 py-7 bg-white dark:bg-gray-800'>
+                <Link className='flex items-center' href="/">하용피뇨</Link>
+                <div className='flex items-center space-x-1'>
+                  <DarkModeBtn />
+                  <a href='https://github.com/carrotpieOwO'>gitHub</a>
+                  <div className='hidden md:flex items-center space-x-1'>
+                    {
+                      session && session.user?.name === 'carrotpieOwO' &&
+                      <>
+                        <LogoutBtn />
+                        <Link href="/write">글쓰기</Link>
+                      </>
+                    }
+                  </div>
+                  <div className='md:hidden'>
                   {
-                    session && session.user?.name === 'carrotpieOwO' &&
-                    <>
-                      <LogoutBtn />
-                      <Link href="/write">글쓰기</Link>
-                    </>
-                  }
+                      session && session.user?.name === 'carrotpieOwO' &&
+                      <Hamburger />
+                    }
+                  </div>
                 </div>
-                <div className='md:hidden'>
-                 {
-                    session && session.user?.name === 'carrotpieOwO' &&
-                    <Hamburger />
-                  }
-                </div>
-              </div>
-            </nav>
-          </div>
-          <Menu />
-        </header>
-        {children}
+              </nav>
+            </div>
+            <Menu />
+          </header>
+          {children}
+        </Providers>
       </body>
     </html>
   )
