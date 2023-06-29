@@ -8,6 +8,7 @@ import Hamburger from './components/nav/Hamburger'
 import Menu from './components/nav/Menu'
 import Providers from './Provider'
 import DarkModeBtn from './components/nav/DarkModeBtn'
+import Search from './components/nav/Search'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -29,6 +30,7 @@ export default async function RootLayout({children,}: { children: React.ReactNod
               <nav className='flex justify-between px-10 py-7 bg-white dark:bg-gray-800'>
                 <Link className='flex items-center' href="/">하용피뇨</Link>
                 <div className='flex items-center space-x-1'>
+                  <Search />
                   <DarkModeBtn />
                   <a href='https://github.com/carrotpieOwO'>gitHub</a>
                   <div className='hidden md:flex items-center space-x-1'>
