@@ -1,6 +1,6 @@
 import ListItem from "@/app/components/ListItem";
 import TagList from "@/app/components/TagList";
-import { Post } from "@/util";
+import { Post, TagObj } from "@/util";
 import { connectDB } from "@/util/database"
 
 export const revalidate = 60; // 60초 단위로 캐싱, 페이지단위로 캐싱가능
@@ -19,11 +19,29 @@ export default async function List({params}:Props) {
         return { ...rest, _id: r._id.toString() } 
     })
 
+    const totalPosts = await db.collection('post').countDocuments();
+    let tagObj:TagObj[] = [
+        {
+        name: 'All',
+        length: totalPosts,
+        url: '/'
+        }
+    ]
+
+    for (const tag of uniqueTags) {
+        const length = await db.collection('post').countDocuments({ tags: tag });
+        tagObj.push({ name: tag, length, url:`/list/${tag}` });
+    }
+
 
     return (
-        <div className="p-4 sm:p-10 md:p-20 lg:p-30">
+        <div className="p-4 sm:p-10 md:p-20 lg:p-30 bg-pink-50 min-h-[calc(100vh-83px)]">
+            <div className="text-center mb-20">
+                <div className="text-5xl font-extrabold mb-4">ha0 log</div>
+                <p className="text-center text-gray-600">~살아남기 위한 고군분투를 기록하다~</p>
+            </div>
             <div className='lg:px-20 xl:px-0 max-w-7xl mx-auto'>
-                <TagList tags={uniqueTags} />  
+                <TagList tags={tagObj} selectedTag={ params.tag } />  
                 <ListItem posts={newResult} />
             </div>
         </div>

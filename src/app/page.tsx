@@ -1,4 +1,4 @@
-import { Post } from "@/util";
+import { Post, TagObj } from "@/util";
 import { connectDB } from "@/util/database"
 import { WithId } from "mongodb";
 import ListItem from './components/ListItem';
@@ -13,12 +13,30 @@ export default async function Home() {
 
   const newResult = result.map(r  => {
       return { ...r, _id: r._id.toString() }
-  })
+  })  
+  
+  let tagObj:TagObj[] = [
+    {
+      name: 'All',
+      length: result.length,
+      url: '/'
+    }
+  ]
+
+  for (const tag of uniqueTags) {
+      const length = await db.collection('post').countDocuments({ tags: tag });
+      tagObj.push({ name: tag, length, url:`/list/${tag}` });
+  }
+
 
   return (
-    <main className="p-4 sm:p-10 md:p-20 lg:p-30">
+    <main className="p-4 sm:p-10 md:p-20 lg:p-30 bg-pink-50">
+      <div className="text-center mb-20">
+        <div className="text-5xl font-extrabold mb-4">ha0 log</div>
+        <p className="text-center text-gray-600">~살아남기 위한 고군분투를 기록하다~</p>
+      </div>
       <div className='lg:px-20 xl:px-0 max-w-7xl mx-auto'>
-        <TagList tags={uniqueTags} />  
+        <TagList tags={tagObj} selectedTag='All' />  
         <ListItem posts={newResult} />
       </div>
     </main>

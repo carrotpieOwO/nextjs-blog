@@ -1,23 +1,17 @@
-import Link from "next/link"
-import Tag from "./common/Tag"
+import { TagObj } from "@/util";
+import { connectDB } from "@/util/database";
 import TagBtn from "./TagBtn"
 
 interface Props {
-    tags: string[]
+    tags: TagObj[]
+    selectedTag?: string
 }
-export default function TagList({ tags }:Props) {
+export default function TagList({ tags, selectedTag }:Props) {
     return (
-        <div className="flex justify-center mb-10 gap-2">
-            {/* <Link href='/'> */}
-                {/* <Tag type="lg">All</Tag> */}
-                <TagBtn url='/' text='all' />
-            {/* </Link> */}
+        <div className="flex flex-wrap justify-center mb-10 gap-2 capitalize">    
             {
                 tags.map(tag => 
-                    <TagBtn key={ tag } url={`/list/${tag}`} text={ tag }/>
-                    // <Link key={tag} href={`/list/${tag}`}>
-                    //     <Tag type="lg">{tag}</Tag>
-                    // </Link>
+                    <TagBtn key={ tag.name } url={ tag.url } text={ `${tag.name} (${tag.length})` } selected={ selectedTag === tag.name }/>
                 )
             }
         </div>

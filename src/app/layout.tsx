@@ -23,7 +23,7 @@ export default async function RootLayout({children,}: { children: React.ReactNod
     <html lang="en">
       <body className={inter.className}>
         <header>
-          <div className='mx-auto bg-pink-200'>
+          <div className='mx-auto border-b-2'>
             <nav className='flex justify-between px-10 py-7'>
               <Link className='flex items-center' href="/">하용피뇨</Link>
               <div className='flex items-center space-x-1'>

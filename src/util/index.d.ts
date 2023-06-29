@@ -15,3 +15,9 @@ interface Images {
     fileName: string;
     url: string;
 }
+
+interface TagObj {
+    name: string
+    length: number
+    url: string
+}
