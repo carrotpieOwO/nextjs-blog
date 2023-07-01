@@ -9,6 +9,7 @@ import Menu from './components/nav/Menu'
 import Providers from './Provider'
 import DarkModeBtn from './components/nav/DarkModeBtn'
 import Search from './components/nav/Search'
+import SearchBtn from './components/nav/SearchBtn'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,13 +28,16 @@ export default async function RootLayout({children,}: { children: React.ReactNod
         <Providers>
           <header>
             <div className='mx-auto border-b-2 border-gray-200 dark:border-gray-900'>
-              <nav className='flex justify-between px-10 py-7 bg-white dark:bg-gray-800'>
+              <nav className='px-10 sm:px-15 md:px-10 xl:px-0 bg-white dark:bg-gray-800 h-[72px] flex items-center justify-between max-w-6xl mx-auto'>
                 <Link className='flex items-center' href="/">하용피뇨</Link>
-                <div className='flex items-center space-x-1'>
-                  <Search />
+                <div className='flex items-center space-x-2'>
+                  <SearchBtn />
+                  <div className='hidden sm:inline-flex'>
+                    <Search />
+                  </div>
                   <DarkModeBtn />
-                  <a href='https://github.com/carrotpieOwO'>gitHub</a>
                   <div className='hidden md:flex items-center space-x-1'>
+                    <a href='https://github.com/carrotpieOwO'>gitHub</a>
                     {
                       session && session.user?.name === 'carrotpieOwO' &&
                       <>
@@ -43,13 +47,13 @@ export default async function RootLayout({children,}: { children: React.ReactNod
                     }
                   </div>
                   <div className='md:hidden'>
-                  {
-                      session && session.user?.name === 'carrotpieOwO' &&
                       <Hamburger />
-                    }
                   </div>
                 </div>
               </nav>
+            </div>
+            <div className='sm:hidden'>
+              <Search />
             </div>
             <Menu />
           </header>

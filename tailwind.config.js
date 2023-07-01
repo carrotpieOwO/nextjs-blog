@@ -24,6 +24,11 @@ module.exports = {
               fontWeight: "400",
               "border-radius": "0.25rem"
             },
+            blockquote: {
+              p: {
+                overflow: 'auto'
+              }
+            }
           },
         },
       }),

@@ -1,38 +1,53 @@
 'use client';
 
+import useNavStore from "@/util/store/nav";
 import { useRouter } from "next/navigation";
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useEffect, useRef, useState } from "react";
 
 export default function Search() {
     const [ value, setValue ] = useState('');
+    const { openSearch, setOpenSearch } = useNavStore();
+    const ref = useRef(null);
+
+    useEffect(() => {
+        setValue('');
+        if (openSearch && ref.current) {
+            (ref.current as HTMLElement).focus();
+        }
+
+    }, [openSearch])
+
     const router = useRouter();
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
-        router.push(`/search/${value}`);
+        if (value.trim() === '') {
+            router.push(`/`);    
+        } else {
+            router.push(`/search/${value}`);
+        }
         setValue('');
     }
 
     return (
-        <div className="pt-2 relative mx-auto text-gray-600">
-            <form onSubmit={ handleSubmit }>
-                <input className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
-                    type="text" name="search" placeholder="Search" 
-                    value={ value }
-                    onChange={ (e) => setValue(e.target.value )}
-                />
-            </form>
-            <button type="submit" className="absolute right-0 top-0 mt-5 mr-4"
-                onClick={ handleSubmit }
+        <>
+            <div className={`px-3 sm:px-0 sm:mr-3 sm:mx-auto bg-pink-50 dark:bg-gray-900 
+                sm:dark:bg-transparent sm:bg-white ${openSearch? 'py-3 sm:py-0' : 'py-0'}`}
             >
-                <svg className="text-gray-600 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg"
-                    version="1.1" id="Capa_1" x="0px" y="0px"
-                    viewBox="0 0 56.966 56.966" 
-                    width="512px" height="512px">
-                    <path
-                    d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z" />
-                </svg>
-            </button>
-        </div>
+                <form onSubmit={ handleSubmit } className={`relative ${openSearch ? 'h-8' : 'h-0'}`}>
+                    <input className={`sm:bg-gray-200 rounded-3xl text-sm focus:outline-none placeholder-gray-500 sm:text-gray-900 ${openSearch ? 'inline w-full px-5 pr-10 h-8': 'w-0 h-0'}`}
+                        ref={ref}
+                        type="text" name="search" placeholder="Search" 
+                        value={ value }
+                        onChange={ (e) => setValue(e.target.value )}
+                    />
+                    <button type="button" className={`absolute right-5 py-0.5 sm:dark:text-gray-900 ${openSearch ? 'inline' : 'hidden'}`} onClick={ ()=> setOpenSearch(false) }>
+                        <svg className="h-5 w-5 inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </form>
+            </div> 
+        </>
     )
 }
