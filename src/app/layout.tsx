@@ -11,6 +11,7 @@ import DarkModeBtn from './components/nav/DarkModeBtn'
 import Search from './components/nav/Search'
 import SearchBtn from './components/nav/SearchBtn'
 import Scene from './components/three/Scene'
+import HomeBtn from './components/nav/HomeBtn'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -30,7 +31,7 @@ export default async function RootLayout({children,}: { children: React.ReactNod
           <header className='dark:bg-gray-800'>
             <div className='mx-auto border-b-2 border-gray-200 dark:border-gray-900'>
               <nav className='px-10 sm:px-15 md:px-10 xl:px-0 bg-white dark:bg-gray-800 h-[72px] flex items-center justify-between max-w-6xl mx-auto'>
-                <Link className='flex items-center' href="/">하용피뇨</Link>
+                <HomeBtn />
                 <div className='flex items-center space-x-2'>
                   <SearchBtn />
                   <div className='hidden sm:inline-flex'>
@@ -60,6 +61,9 @@ export default async function RootLayout({children,}: { children: React.ReactNod
           </header>
           <Scene />
           {children}
+          <footer className='bg-pink-50 dark:bg-gray-800 text-center py-16'>
+            ha0peno • © 2023 • ha0.work
+          </footer>
         </Providers>
       </body>
     </html>
