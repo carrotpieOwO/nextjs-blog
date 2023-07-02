@@ -38,8 +38,9 @@ export default async function RootLayout({children,}: { children: React.ReactNod
                     <Search />
                   </div>
                   <DarkModeBtn />
-                  <div className='hidden md:flex items-center space-x-1'>
-                    <a href='https://github.com/carrotpieOwO'>gitHub</a>
+                  <div className='hidden md:flex items-center space-x-2'>
+                    <Link href='/blog' className='hover:text-pink-500'>Blog</Link>
+                    <a href='https://github.com/carrotpieOwO' className='hover:text-pink-500'>GitHub</a>
                     {
                       session && session.user?.name === 'carrotpieOwO' &&
                       <>
@@ -59,9 +60,8 @@ export default async function RootLayout({children,}: { children: React.ReactNod
             </div>
             <Menu />
           </header>
-          <Scene />
           {children}
-          <footer className='bg-pink-50 dark:bg-gray-800 text-center py-16'>
+          <footer className='bg-pink-50 dark:bg-gray-900 text-center py-16'>
             ha0peno • © 2023 • ha0.work
           </footer>
         </Providers>

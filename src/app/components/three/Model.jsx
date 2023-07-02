@@ -8,21 +8,39 @@ Command: npx gltfjsx@6.1.4 public/models/model.gltf
 import React, { useEffect, useRef, useState } from 'react'
 import { useGLTF, useAnimations } from '@react-three/drei'
 import useScrollPosition from '@/hooks/useScrollPosition';
+import { useFrame } from '@react-three/fiber';
 
 const Model = (props) => {
   const group = useRef()
   const { nodes, materials, animations } = useGLTF('../models/model.gltf')
   const { isScrolling } = useScrollPosition();
-  
+  const { page } = props;
+
   const { actions } = useAnimations(animations, group)
   const [ animation, setAnimation ] = useState('pose');
   
   useEffect(() => {
-    if (isScrolling) {
-        setAnimation('swim')
-    } else {
-      setAnimation('pose')
+    if( page === 'home') {
+      setAnimation('sitting');
     }
+  }, [])
+  
+
+  useFrame((state, delta) => {
+    if( page === 'blog' && isScrolling ) {
+      group.current.rotation.y = group.current.rotation.y += 0.005
+    }
+  })
+
+  useEffect(() => {
+    if(page !== 'home') {
+      if (isScrolling) {
+        setAnimation('swim')
+      } else {
+        setAnimation('pose')
+      }
+    }
+    
   }, [isScrolling])
 
   useEffect(() => {

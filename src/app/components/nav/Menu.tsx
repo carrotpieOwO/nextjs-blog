@@ -17,7 +17,8 @@ export default function Menu () {
                     <Link href="/write">글쓰기</Link>
                 </>
             }
-            <a href='https://github.com/carrotpieOwO'>gitHub</a>
+            <Link href='/blog' className='hover:text-pink-500'>Blog</Link>
+            <a href='https://github.com/carrotpieOwO' className="hover:text-pink-500">GitHub</a>
         </div>
     )
 }

@@ -22,9 +22,9 @@ export default function Search() {
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
         if (value.trim() === '') {
-            router.push(`/`);    
+            router.push(`/blog`);    
         } else {
-            router.push(`/search/${value}`);
+            router.push(`/blog/search/${value}`);
         }
         setValue('');
     }

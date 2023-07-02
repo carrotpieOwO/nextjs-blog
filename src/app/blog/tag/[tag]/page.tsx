@@ -24,13 +24,13 @@ export default async function List({params}:Props) {
         {
         name: 'All',
         length: totalPosts,
-        url: '/'
+        url: '/blog'
         }
     ]
 
     for (const tag of uniqueTags) {
         const length = await db.collection('post').countDocuments({ tags: tag });
-        tagObj.push({ name: tag, length, url:`/list/${tag}` });
+        tagObj.push({ name: tag, length, url:`/blog/tag/${tag}` });
     }
 
 
