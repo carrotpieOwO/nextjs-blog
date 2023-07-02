@@ -28,7 +28,8 @@ const findMissingUrls = (str: string, images?: Images[]): string[] => {
 };
 
 export default function Write() {
-    useAuthRoute();
+    const { authRouting } = useAuthRoute();
+    authRouting();
 
     const [ title, setTitle ] = useState('');
     const [ tags, setTags ] = useState<string[]>([]);

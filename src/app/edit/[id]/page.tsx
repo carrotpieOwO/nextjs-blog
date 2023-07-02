@@ -33,7 +33,8 @@ type Props = {
 }
 
 export default function Edit({params} : Props) {
-    useAuthRoute();
+    const { authRouting } = useAuthRoute();
+    authRouting();
 
     const [ title, setTitle ] = useState('');
     const [ tags, setTags ] = useState<string[] | []>([]);

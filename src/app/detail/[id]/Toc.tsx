@@ -58,8 +58,6 @@ export default function Toc({ htmlString }: {htmlString: string}) {
                     className={`cursor-pointer px-3 border-l-4 py-1 text-sm text-gray-500
                         ${ activeItemId === toc.id ? 'bg-pink-50 border-pink-300' : 'bg-transparent border-pink-200' }
                         ${toc.level === 2 ? 'pl-10' : toc.level === 3 ? 'pl-16' : 'pl-5'}`}
-
-                    //style={{ background: activeItemId === toc.id ? 'pink' : '#fff'}}
                     onClick={() => scrollToEl(toc.id) }
                 >
                     { toc.text }

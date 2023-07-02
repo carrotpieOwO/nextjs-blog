@@ -31,9 +31,9 @@ export default function Hamburger() {
     return (
         <div className="block cursor-pointer">
             <div className="space-y-1.5 " onClick={() => setNav(!nav)}>
-                <span className="block w-6 h-0.5 bg-black animate-pulse"></span>
-                <span className="block w-6 h-0.5  bg-black animate-pulse"></span>
-                <span className="block w-6 h-0.5  bg-black animate-pulse"></span>
+                <span className="block w-6 h-0.5 bg-black dark:bg-white animate-pulse"></span>
+                <span className="block w-6 h-0.5  bg-black dark:bg-white animate-pulse"></span>
+                <span className="block w-6 h-0.5  bg-black dark:bg-white animate-pulse"></span>
             </div>
         </div>
     )
