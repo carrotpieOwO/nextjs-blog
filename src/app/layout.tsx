@@ -10,6 +10,7 @@ import Providers from './Provider'
 import DarkModeBtn from './components/nav/DarkModeBtn'
 import Search from './components/nav/Search'
 import SearchBtn from './components/nav/SearchBtn'
+import Scene from './components/three/Scene'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -57,6 +58,7 @@ export default async function RootLayout({children,}: { children: React.ReactNod
             </div>
             <Menu />
           </header>
+          <Scene />
           {children}
         </Providers>
       </body>
