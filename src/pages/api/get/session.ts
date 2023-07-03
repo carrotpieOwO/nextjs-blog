@@ -9,7 +9,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
 
         if(!session) {
             console.log('권한없음')
-            return res.status(401).json('권한없음')
+            return res.status(200).json('권한없음')
         }  else {
             return res.status(200).json(session?.user?.name)
         }

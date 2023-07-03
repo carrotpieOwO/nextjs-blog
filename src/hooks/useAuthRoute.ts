@@ -29,6 +29,5 @@ export const useAuthRoute = () => {
         !isAdmin && router.replace('/')
     }
 
-
     return { authRouting, isAdmin }
 }

@@ -1,3 +1,4 @@
+import MessageForm from "./components/MessageForm";
 import Scene from "./components/three/Scene";
 export const revalidate = 60; // 60초 단위로 캐싱, 페이지단위로 캐싱가능
 
@@ -12,7 +13,7 @@ export default async function Home() {
         <Scene page="home" />
         <div className="px-10 py-10">
           <h4 className="text-xl font-semibold">About</h4>
-          <div className="px-1 sm:px-10 py-7 text-gray-700 dark:text-gray-300 text-sm sm:text-lg">
+          <div className="sm:px-10 py-7 text-gray-700 dark:text-gray-300 text-sm sm:text-lg">
             <div className="flex items-center">
               <p>안녕하세요.</p><span className="ml-1 animate-waving-hand">👋🏻</span>
             </div>
@@ -20,10 +21,10 @@ export default async function Home() {
             <p>개발 시 겪었던 문제사항들이나, </p>
             <p>공부했던 것들을 기록하기 위한 블로그입니다.</p><br/>
             <span>
-              본블로그는
-              <code className="bg-pink-100 py-0.5 px-2 rounded-md text-pink-500 text-sm mr-1">Next.js</code>
-              <code className="bg-pink-100 py-0.5 px-2 rounded-md text-pink-500 text-sm mr-1">React</code>
-              <code className="bg-pink-100 py-0.5 px-2 rounded-md text-pink-500 text-sm mr-1">Typescript</code>
+              본블로그는 
+              <code className="bg-pink-100 py-0.5 px-2 rounded-md text-pink-500 text-sm mx-1">Next.js</code>
+              <code className="bg-pink-100 py-0.5 px-2 rounded-md text-pink-500 text-sm mx-1">React</code>
+              <code className="bg-pink-100 py-0.5 px-2 rounded-md text-pink-500 text-sm mx-1">Typescript</code>
               로 제작되었습니다.
             </span>
             <p>제 블로그가 유익하셨다면, 아래 메시지로 응원을 남겨주세요! </p><br/>
@@ -42,14 +43,9 @@ export default async function Home() {
               </a>
             </div>
           </div>
-          <h4 className="text-xl font-semibold mt-20">Message</h4>
-          <div className="flex items-center w-full 2xl:w-2/3 mt-5">
-            <textarea rows={1} className="block ml-1 sm:ml-10 mr-2 p-2.5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-pink-500 focus:border-pink-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-pink-500 dark:focus:border-pink-500" placeholder="Your message..."></textarea>
-            <button type="submit" className="inline-flex justify-center p-2 text-pink-600 rounded-full cursor-pointer hover:bg-pink-100 dark:text-pink-500 dark:hover:bg-gray-600">
-              <svg className="w-6 h-6 rotate-90" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
-              </svg>
-            </button>
+          <h4 className="text-xl font-semibold mt-10">Message</h4>
+          <div className="flex items-center w-full sm:pl-10">
+            <MessageForm />
           </div>
         </div>
       </div>
