@@ -10,7 +10,7 @@ import dayjs from 'dayjs';
 import { deleteObject, getMetadata, ref } from 'firebase/storage';
 import { useRouter } from 'next/navigation';
 import { MutableRefObject, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { useAuthRoute } from '@/util/hooks/useAuthRoute';
+import { useAuthRoute } from '@/hooks/useAuthRoute';
 
 // 업로드 했다가 최종적으로 사용하지 않은 이미지파일을 찾아 배열로 반환한다.
 const findMissingUrls = (str: string, images?: Images[] | undefined): string[] => {
