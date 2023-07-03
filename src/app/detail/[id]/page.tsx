@@ -59,7 +59,7 @@ export default async function Detail({params} : DetailProps) {
                 <div className="flex items-center mb-7">
                 {
                     result.tags?.map( tag =>
-                        <TagBtn key={tag} url={`/tag/${tag}`} text={ tag } />
+                        <TagBtn key={tag} url={`/blog/tag/${tag}`} text={ tag } />
                     )
                 }
                 </div>
