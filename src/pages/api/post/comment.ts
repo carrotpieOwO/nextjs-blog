@@ -5,9 +5,9 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     
 
     if(req.method === 'POST') {
-        if (req.body.title === '' || req.body.content === '') {
-            return res.status(500).json('내용없음')
-        }
+        // if (req.body.title === '' || req.body.content === '') {
+        //     return res.status(500).json('내용없음')
+        // }
 
         const ip = req.headers["x-forwarded-for"] || req.headers["x-real-ip"] || req.socket.remoteAddress
       
@@ -28,4 +28,3 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
         //     return res.status(500).json(error)  
         // }
     }
-}
