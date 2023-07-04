@@ -1,6 +1,7 @@
 'use client';
 
 import axios from "axios";
+import dayjs from "dayjs";
 import React, { ChangeEvent, useState } from "react";
 
 export default function MessageForm () {
@@ -69,7 +70,7 @@ export default function MessageForm () {
         const isValidContent = checkContent(content);
         if( isValidName || isValidMail || isValidContent ) return
         
-        const res = await axios.post('/api/post/comment', { name, mail, content})
+        const res = await axios.post('/api/post/comment', { name, mail, content, createdTime: dayjs().format('YYYY-MM-DDTHH:mm:ss')})
         .then( res => {
             console.log('res', res)
         })
