@@ -45,10 +45,6 @@ export default async function Detail({params} : DetailProps) {
 
     });
 
-    
-    //console.log(highlightedCode);
-
-
     const modifiedHtmlString = dom.serialize();
 
     return (
@@ -88,7 +84,7 @@ export default async function Detail({params} : DetailProps) {
                 }
                 </div>
             </div>
-            <div className="fixed bottom-10 left-60 grid gap-5">
+            <div className="fixed bottom-10 hidden 2xl:grid 2xl:left-[calc(((100vw-1500px)/2)+1rem)] gap-5">
                 <NavigateBtn type="pageUp" />
                 <NavigateBtn type="back" />
             </div>

@@ -17,7 +17,7 @@ export default async function Home() {
             <div className="flex items-center">
               <p>안녕하세요.</p><span className="ml-1 animate-waving-hand">👋🏻</span>
             </div>
-            <p>프론트엔드 개발자 <span className="text-green-800 font-semibold">하용피뇨🫑</span>입니다.</p><br/>
+            <p>프론트엔드 개발자 <span className="text-green-800 dark:text-green-200 font-semibold">하용피뇨🫑</span>입니다.</p><br/>
             <p>개발 시 겪었던 문제사항들이나, </p>
             <p>공부했던 것들을 기록하기 위한 블로그입니다.</p><br/>
             <span>

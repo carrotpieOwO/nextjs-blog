@@ -16,7 +16,7 @@ const Model = (props) => {
   const { isScrolling } = useScrollPosition();
   const { page } = props;
 
-  const { actions } = useAnimations(animations, group)
+  const { actions, mixer } = useAnimations(animations, group)
   const [ animation, setAnimation ] = useState('pose');
   
   useEffect(() => {
@@ -25,6 +25,19 @@ const Model = (props) => {
     }
   }, [])
   
+  useEffect(() => {
+    actions['reacting'].repetitions = 1
+
+    let mixerListener;
+    if(mixer) {
+      mixerListener = mixer.addEventListener('finished', () => {
+        setAnimation(page === 'home' ? 'sitting' : 'pose')
+      })
+    }
+    
+    return () => mixer.removeEventListener('finished', mixerListener);
+
+  }, [actions])
 
   useFrame((state, delta) => {
     if( page === 'blog' && isScrolling ) {
@@ -50,26 +63,29 @@ const Model = (props) => {
     return () => actions[animation] && actions[animation].fadeOut(0.3);
   }, [animation])
 
+  const handleClick = () => {
+    setAnimation('reacting')
+  }
 
   return (
     <group ref={group} {...props} dispose={null}>
       <group name="Scene">
         <group name="Chloe" rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <primitive object={nodes.mixamorigHips} />
-          <skinnedMesh scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_body_lower" geometry={nodes.Chloe_body_lower.geometry} material={materials['매테리얼.003']} skeleton={nodes.Chloe_body_lower.skeleton} />
-          <skinnedMesh scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_body_shoes_L" geometry={nodes.Chloe_body_shoes_L.geometry} material={materials['매테리얼.003']} skeleton={nodes.Chloe_body_shoes_L.skeleton} />
-          <skinnedMesh scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_body_shoes_R" geometry={nodes.Chloe_body_shoes_R.geometry} material={materials['매테리얼.003']} skeleton={nodes.Chloe_body_shoes_R.skeleton} />
-          <skinnedMesh scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_body_upper" geometry={nodes.Chloe_body_upper.geometry} material={materials['매테리얼.003']} skeleton={nodes.Chloe_body_upper.skeleton} />
-          <skinnedMesh scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_hair_back_01" geometry={nodes.Chloe_hair_back_01.geometry} material={materials['hair.001']} skeleton={nodes.Chloe_hair_back_01.skeleton} />
-          <skinnedMesh scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_hair_bangs_02" geometry={nodes.Chloe_hair_bangs_02.geometry} material={materials['hair.001']} skeleton={nodes.Chloe_hair_bangs_02.skeleton} />
-          <skinnedMesh scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_hair_side_04" geometry={nodes.Chloe_hair_side_04.geometry} material={materials['hair.001']} skeleton={nodes.Chloe_hair_side_04.skeleton} />
-          <skinnedMesh scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_head_eyebrows" geometry={nodes.Chloe_head_eyebrows.geometry} material={materials['lambert1.002']} skeleton={nodes.Chloe_head_eyebrows.skeleton} />
-          <skinnedMesh scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_head_eyes_L_ball" geometry={nodes.Chloe_head_eyes_L_ball.geometry} material={materials['매테리얼.002']} skeleton={nodes.Chloe_head_eyes_L_ball.skeleton} />
-          <skinnedMesh scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_head_eyes_R_ball" geometry={nodes.Chloe_head_eyes_R_ball.geometry} material={materials['매테리얼.002']} skeleton={nodes.Chloe_head_eyes_R_ball.skeleton} />
-          <skinnedMesh scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_head_face" geometry={nodes.Chloe_head_face.geometry} material={materials['매테리얼.002']} skeleton={nodes.Chloe_head_face.skeleton} />
-          <skinnedMesh scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_head_teeth_lower" geometry={nodes.Chloe_head_teeth_lower.geometry} material={materials['lambert1.002']} skeleton={nodes.Chloe_head_teeth_lower.skeleton} />
-          <skinnedMesh scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_head_teeth_upper" geometry={nodes.Chloe_head_teeth_upper.geometry} material={materials['lambert1.002']} skeleton={nodes.Chloe_head_teeth_upper.skeleton} />
-          <skinnedMesh scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_head_tongue" geometry={nodes.Chloe_head_tongue.geometry} material={materials['lambert1.002']} skeleton={nodes.Chloe_head_tongue.skeleton} />
+          <skinnedMesh onClick={handleClick} scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_body_lower" geometry={nodes.Chloe_body_lower.geometry} material={materials['매테리얼.003']} skeleton={nodes.Chloe_body_lower.skeleton} />
+          <skinnedMesh onClick={handleClick} scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_body_shoes_L" geometry={nodes.Chloe_body_shoes_L.geometry} material={materials['매테리얼.003']} skeleton={nodes.Chloe_body_shoes_L.skeleton} />
+          <skinnedMesh onClick={handleClick} scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_body_shoes_R" geometry={nodes.Chloe_body_shoes_R.geometry} material={materials['매테리얼.003']} skeleton={nodes.Chloe_body_shoes_R.skeleton} />
+          <skinnedMesh onClick={handleClick} scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_body_upper" geometry={nodes.Chloe_body_upper.geometry} material={materials['매테리얼.003']} skeleton={nodes.Chloe_body_upper.skeleton} />
+          <skinnedMesh onClick={handleClick} scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_hair_back_01" geometry={nodes.Chloe_hair_back_01.geometry} material={materials['hair.001']} skeleton={nodes.Chloe_hair_back_01.skeleton} />
+          <skinnedMesh onClick={handleClick} scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_hair_bangs_02" geometry={nodes.Chloe_hair_bangs_02.geometry} material={materials['hair.001']} skeleton={nodes.Chloe_hair_bangs_02.skeleton} />
+          <skinnedMesh onClick={handleClick} scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_hair_side_04" geometry={nodes.Chloe_hair_side_04.geometry} material={materials['hair.001']} skeleton={nodes.Chloe_hair_side_04.skeleton} />
+          <skinnedMesh onClick={handleClick} scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_head_eyebrows" geometry={nodes.Chloe_head_eyebrows.geometry} material={materials['lambert1.002']} skeleton={nodes.Chloe_head_eyebrows.skeleton} />
+          <skinnedMesh onClick={handleClick} scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_head_eyes_L_ball" geometry={nodes.Chloe_head_eyes_L_ball.geometry} material={materials['매테리얼.002']} skeleton={nodes.Chloe_head_eyes_L_ball.skeleton} />
+          <skinnedMesh onClick={handleClick} scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_head_eyes_R_ball" geometry={nodes.Chloe_head_eyes_R_ball.geometry} material={materials['매테리얼.002']} skeleton={nodes.Chloe_head_eyes_R_ball.skeleton} />
+          <skinnedMesh onClick={handleClick} scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_head_face" geometry={nodes.Chloe_head_face.geometry} material={materials['매테리얼.002']} skeleton={nodes.Chloe_head_face.skeleton} />
+          <skinnedMesh onClick={handleClick} scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_head_teeth_lower" geometry={nodes.Chloe_head_teeth_lower.geometry} material={materials['lambert1.002']} skeleton={nodes.Chloe_head_teeth_lower.skeleton} />
+          <skinnedMesh onClick={handleClick} scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_head_teeth_upper" geometry={nodes.Chloe_head_teeth_upper.geometry} material={materials['lambert1.002']} skeleton={nodes.Chloe_head_teeth_upper.skeleton} />
+          <skinnedMesh onClick={handleClick} scale={100} rotation={[-Math.PI / 2, 0, 0]} castShadow name="Chloe_head_tongue" geometry={nodes.Chloe_head_tongue.geometry} material={materials['lambert1.002']} skeleton={nodes.Chloe_head_tongue.skeleton} />
         </group>
       </group>
     </group>
