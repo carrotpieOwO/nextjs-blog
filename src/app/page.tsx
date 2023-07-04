@@ -21,7 +21,7 @@ export default async function Home() {
             <p>개발 시 겪었던 문제사항들이나, </p>
             <p>공부했던 것들을 기록하기 위한 블로그입니다.</p><br/>
             <span>
-              본블로그는 
+              본 블로그는 
               <code className="bg-pink-100 py-0.5 px-2 rounded-md text-pink-500 text-sm mx-1">Next.js</code>
               <code className="bg-pink-100 py-0.5 px-2 rounded-md text-pink-500 text-sm mx-1">React</code>
               <code className="bg-pink-100 py-0.5 px-2 rounded-md text-pink-500 text-sm mx-1">Typescript</code>

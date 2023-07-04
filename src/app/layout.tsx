@@ -12,6 +12,7 @@ import Search from './components/nav/Search'
 import SearchBtn from './components/nav/SearchBtn'
 import Scene from './components/three/Scene'
 import HomeBtn from './components/nav/HomeBtn'
+import ReactQueryProvider from './ReactQueryProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,42 +29,44 @@ export default async function RootLayout({children,}: { children: React.ReactNod
     <html lang="en">
       <body className={inter.className}>
         <Providers>
-          <header className='dark:bg-gray-800'>
-            <div className='mx-auto border-b-2 border-gray-200 dark:border-gray-900'>
-              <nav className='px-10 sm:px-15 md:px-10 xl:px-0 bg-white dark:bg-gray-800 h-[72px] flex items-center justify-between max-w-6xl mx-auto'>
-                <HomeBtn />
-                <div className='flex items-center space-x-2'>
-                  <SearchBtn />
-                  <div className='hidden sm:inline-flex'>
-                    <Search />
+          <ReactQueryProvider>
+            <header className='dark:bg-gray-800'>
+              <div className='mx-auto border-b-2 border-gray-200 dark:border-gray-900'>
+                <nav className='px-10 sm:px-15 md:px-10 xl:px-0 bg-white dark:bg-gray-800 h-[72px] flex items-center justify-between max-w-6xl mx-auto'>
+                  <HomeBtn />
+                  <div className='flex items-center space-x-2'>
+                    <SearchBtn />
+                    <div className='hidden sm:inline-flex'>
+                      <Search />
+                    </div>
+                    <DarkModeBtn />
+                    <div className='hidden md:flex items-center space-x-2'>
+                      <Link href='/blog' className='hover:text-pink-500'>Blog</Link>
+                      <a href='https://github.com/carrotpieOwO' className='hover:text-pink-500'>GitHub</a>
+                      {
+                        session && session.user?.name === 'carrotpieOwO' &&
+                        <>
+                          <LogoutBtn />
+                          <Link href="/write">글쓰기</Link>
+                        </>
+                      }
+                    </div>
+                    <div className='md:hidden'>
+                        <Hamburger />
+                    </div>
                   </div>
-                  <DarkModeBtn />
-                  <div className='hidden md:flex items-center space-x-2'>
-                    <Link href='/blog' className='hover:text-pink-500'>Blog</Link>
-                    <a href='https://github.com/carrotpieOwO' className='hover:text-pink-500'>GitHub</a>
-                    {
-                      session && session.user?.name === 'carrotpieOwO' &&
-                      <>
-                        <LogoutBtn />
-                        <Link href="/write">글쓰기</Link>
-                      </>
-                    }
-                  </div>
-                  <div className='md:hidden'>
-                      <Hamburger />
-                  </div>
-                </div>
-              </nav>
-            </div>
-            <div className='sm:hidden'>
-              <Search />
-            </div>
-            <Menu />
-          </header>
-          {children}
-          <footer className='bg-pink-50 dark:bg-gray-900 text-center py-16'>
-            ha0peno • © 2023 • ha0.work
-          </footer>
+                </nav>
+              </div>
+              <div className='sm:hidden'>
+                <Search />
+              </div>
+              <Menu />
+            </header>
+            {children}
+            <footer className='bg-pink-50 dark:bg-gray-900 text-center py-16'>
+              ha0peno • © 2023 • ha0.work
+            </footer>
+          </ReactQueryProvider>
         </Providers>
       </body>
     </html>

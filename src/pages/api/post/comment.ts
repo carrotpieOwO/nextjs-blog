@@ -8,9 +8,8 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
 
         try {
             const db = (await connectDB).db('ha0peno')
-            let result = await db.collection('guestbook').insertOne(req.body)    
+            await db.collection('guestbook').insertOne(req.body)    
 
-            console.log('new  id', result.insertedId)
             return res.status(200).json('success')
 
         } catch (error) {
