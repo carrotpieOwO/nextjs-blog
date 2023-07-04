@@ -13,6 +13,7 @@ const { JSDOM } = jsdom;
 import hljs from 'highlight.js';
 import 'highlight.js/styles/panda-syntax-dark.css';
 import TagBtn from "@/app/components/TagBtn"
+import NavigateBtn from "./NavigateBtn"
 
 type DetailProps = {
     params: { id: string }
@@ -86,6 +87,10 @@ export default async function Detail({params} : DetailProps) {
                     nextPost &&  <PrevNext url={`/detail/${nextPost._id}`} content={nextPost.title} direction="right" />
                 }
                 </div>
+            </div>
+            <div className="fixed bottom-10 left-60 grid gap-5">
+                <NavigateBtn type="pageUp" />
+                <NavigateBtn type="back" />
             </div>
         </main>
     )
