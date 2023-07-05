@@ -14,6 +14,7 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/panda-syntax-dark.css';
 import TagBtn from "@/app/components/TagBtn"
 import NavigateBtn from "./NavigateBtn"
+import Comment from "./Comment"
 
 type DetailProps = {
     params: { id: string }
@@ -75,6 +76,7 @@ export default async function Detail({params} : DetailProps) {
                     </div>
                 </div>
                 <div className="prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{__html: modifiedHtmlString}} />
+                <Comment />
                 <div className="mt-20 flex justify-between gap-3">
                 {
                     prevPost &&  <PrevNext url={`/detail/${prevPost._id}`} content={prevPost.title} direction="left" />

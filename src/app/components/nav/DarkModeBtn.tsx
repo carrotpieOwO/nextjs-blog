@@ -10,6 +10,20 @@ export default function DarkModeBtn() {
         setMounted(true)
     }, [])
 
+    useEffect(() => {
+        const isComment = document.querySelector('iframe.utterances-frame');
+        if (isComment) {
+            const utterancesTheme = theme === 'light' ? "github-light" : "photon-dark" ;
+    
+            (
+                document?.querySelector("iframe.utterances-frame")?.contentWindow.postMessage(
+                { type: "set-theme", theme: utterancesTheme },
+                "https://utteranc.es/"
+            )
+            )
+        }
+    }, [systemTheme, theme])
+
     if (!mounted) {
         return null
     }
