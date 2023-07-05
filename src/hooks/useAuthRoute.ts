@@ -1,32 +1,42 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useState } from "react"
+import { useEffect, useState } from "react"
+
+async function getSession () {
+    try {
+        const res = await axios.get('/api/get/session')
+            
+        if(res.data === 'carrotpieOwO') {
+            return res.data
+        } else {
+            return false
+        }
+    } catch (error) {
+        console.error('Error fetching session:', error);
+        return false
+    }
+}
 
 export const useAuthRoute = () => {
     const router = useRouter();
     const [ isAdmin, setIsAdmin ] = useState(false);
 
-    try {
-        axios.get('/api/get/session')
-            .then(res => {
-                if(res.data !== 'carrotpieOwO') {
-                    setIsAdmin(false);
-                } else {
-                    setIsAdmin(true);
-                }
-            })
-            .catch(error => {
-                setIsAdmin(false);
-            })
-
-    } catch (error) {
-        setIsAdmin(false);
-        console.error('Error fetching session:', error);
-    }
-
+    useEffect(() => {
+        async function isAdminession() {
+            const res = await getSession();
+            console.log('res', res)
+            if(res) {
+                setIsAdmin(true)
+            } else {
+                setIsAdmin(false)
+            }
+        }
+        isAdminession();
+    }, [])
     
-    const authRouting = () => {
-        !isAdmin && router.replace('/')
+    const authRouting = async () => {
+        const res = await getSession()
+        !res && router.replace('/')
     }
 
     return { authRouting, isAdmin }
