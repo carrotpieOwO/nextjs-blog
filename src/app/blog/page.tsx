@@ -8,6 +8,9 @@ import TagList from "../components/TagList";
 export const metadata:Metadata = {
   title: 'Blog',
   description: '하용피뇨 front-end 기술 블로그',
+  openGraph: {
+    title: 'Blog',
+  }
 }
 
 export default async function Blog () {

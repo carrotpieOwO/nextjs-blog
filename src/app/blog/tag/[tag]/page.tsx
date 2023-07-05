@@ -12,8 +12,12 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {
-      title: params.tag,
-      description: `Front-end 기술블로그 태그 검색: ${params.tag}`,
+        title: params.tag,
+        description: `Front-end 기술블로그 태그 검색: ${params.tag}`,
+        openGraph: {
+            title: params.tag,
+            description: `Front-end 기술블로그 검색: ${params.tag}`,
+        }
     };
 }
 

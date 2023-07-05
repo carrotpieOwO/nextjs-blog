@@ -12,8 +12,12 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const search = decodeURIComponent(params.search)
     return {
-      title: search,
-      description: `Front-end 기술블로그 검색: ${search}`,
+        title: search,
+        description: `Front-end 기술블로그 검색: ${search}`,
+        openGraph: {
+            title: search,
+            description: `Front-end 기술블로그 검색: ${search}`,
+        }
     };
 }
 

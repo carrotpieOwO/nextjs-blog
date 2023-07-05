@@ -30,7 +30,8 @@ export async function generateMetadata({ params }: DetailProps): Promise<Metadat
       title: data.title,
       description: data.content,
       openGraph: {
-        images: data.thumbnail
+        title: data.title,
+        images: [data.thumbnail]
       }
     };
 }

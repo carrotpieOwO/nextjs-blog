@@ -7,6 +7,12 @@ export const metadata:Metadata = {
         default: 'ha0peno❤️'
     },
     description: '하용피뇨 front-end 기술 블로그',
+    openGraph: {
+        title: {
+            template: '%s :: ha0peno❤️',
+            default: 'ha0peno❤️'
+        },
+    }
 }
 
 export default function BlogLayout({ children, params }: {
