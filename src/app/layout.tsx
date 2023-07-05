@@ -10,17 +10,56 @@ import Providers from './Provider'
 import DarkModeBtn from './components/nav/DarkModeBtn'
 import Search from './components/nav/Search'
 import SearchBtn from './components/nav/SearchBtn'
-import Scene from './components/three/Scene'
 import HomeBtn from './components/nav/HomeBtn'
 import ReactQueryProvider from './ReactQueryProvider'
+import { Metadata } from 'next'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
-  title: 'ha0peno BLOG❤️',
+export const metadata:Metadata = {
+  title: {
+    template: '%s :: ha0peno❤️',
+    default: 'ha0peno❤️'
+  },
   description: '하용피뇨 front-end 기술 블로그',
-  icons: '../app/favicon.ico'
+  icons: '../app/favicon.ico',
+  generator: 'Next.js',
+  applicationName: 'ha0peno',
+  referrer: 'origin-when-cross-origin',
+  keywords: ['Next.js', 'React', 'JavaScript', 'TypeScript', 'front-end', 'front', 'web', 'developer', '기술블로그', '블로그', 'blog'],
+  authors: { name: 'ha0peno', url: 'https://ha0.work' },
+  creator: 'ha0penp',
+  publisher: 'ha0peno',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    title: {
+      template: '%s :: ha0peno❤️',
+      default: 'ha0peno❤️'
+    },
+    description: '하용피뇨 front-end 기술 블로그',
+    url: 'https://ha0.work',
+    siteName: 'ha0peno',
+    // images: [
+    //   {
+    //     url: 'https://nextjs.org/og.png',
+    //     width: 800,
+    //     height: 600,
+    //   },
+    //   {
+    //     url: 'https://nextjs.org/og-alt.png',
+    //     width: 1800,
+    //     height: 1600,
+    //     alt: 'My custom alt',
+    //   },
+    // ],
+    type: 'website',
+  },
 }
+
 
 export default async function RootLayout({children,}: { children: React.ReactNode }) {
   const session = await getServerSession(authOptions);

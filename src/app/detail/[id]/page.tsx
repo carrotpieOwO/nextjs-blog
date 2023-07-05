@@ -15,9 +15,24 @@ import 'highlight.js/styles/panda-syntax-dark.css';
 import TagBtn from "@/app/components/TagBtn"
 import NavigateBtn from "./NavigateBtn"
 import Comment from "./Comment"
+import { Metadata, ResolvingMetadata } from "next"
+
+
 
 type DetailProps = {
     params: { id: string }
+}
+export async function generateMetadata({ params }: DetailProps): Promise<Metadata> {
+    const url = 'https://ha0.work/api/get/detail?id=' + params.id;
+    const data = await fetch(url).then((res) =>  res.json());
+    
+    return {
+      title: data.title,
+      description: data.content,
+      openGraph: {
+        images: data.thumbnail
+      }
+    };
 }
 
 export default async function Detail({params} : DetailProps) {

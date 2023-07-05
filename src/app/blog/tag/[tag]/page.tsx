@@ -2,11 +2,19 @@ import ListItem from "@/app/components/ListItem";
 import TagList from "@/app/components/TagList";
 import { Post, TagObj } from "@/util";
 import { connectDB } from "@/util/database"
+import { Metadata } from "next";
 
 export const revalidate = 60; // 60초 단위로 캐싱, 페이지단위로 캐싱가능
 
 type Props = {
     params: { tag: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    return {
+      title: params.tag,
+      description: `Front-end 기술블로그 태그 검색: ${params.tag}`,
+    };
 }
 
 export default async function List({params}:Props) {

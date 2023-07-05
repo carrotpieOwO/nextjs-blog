@@ -1,8 +1,14 @@
 import { Post, TagObj } from "@/util";
 import { connectDB } from "@/util/database";
 import { WithId } from "mongodb";
+import { Metadata } from "next";
 import ListItem from "../components/ListItem";
 import TagList from "../components/TagList";
+
+export const metadata:Metadata = {
+  title: 'Blog',
+  description: '하용피뇨 front-end 기술 블로그',
+}
 
 export default async function Blog () {
     const db = (await connectDB).db('ha0peno')
