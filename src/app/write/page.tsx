@@ -6,7 +6,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import { deleteObject, ref } from 'firebase/storage';
 import { useRouter } from 'next/navigation';
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import MyEditor from '../components/editor/MyEditor';
 import Title from '../components/editor/Title';
 import Tag from '../components/editor/Tag';

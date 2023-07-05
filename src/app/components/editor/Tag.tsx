@@ -34,14 +34,18 @@ export default function Tag ({ tags, setTags }: Props) {
                 value={input}
                 onChange={(e) => setInput(e.target.value)} 
             />
-            <div className="flex gap-3">
+            <div className="flex gap-3 my-2">
                 {
                     tags &&
                     tags.map((tag, index) => 
-                        <div key={tag} className="background-black">
+                        <span key={tag} className={`bg-pink-100 py-2 px-2 text-pink-600 text-xs font-medium mr-2 rounded flex items-center`}>
                             {tag}
-                            <span onClick={() => deleteTag(tag)}>x</span>
-                        </div>
+                            <svg className="h-3 w-3 text-black ml-2 cursor-pointer" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"
+                                onClick={() => deleteTag(tag)}
+                            >
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </span>
                     )
                 }
             </div>
