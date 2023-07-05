@@ -24,7 +24,7 @@ export const useAuthRoute = () => {
     useEffect(() => {
         async function isAdminession() {
             const res = await getSession();
-            console.log('res', res)
+
             if(res) {
                 setIsAdmin(true)
             } else {
