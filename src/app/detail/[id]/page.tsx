@@ -30,6 +30,9 @@ export async function generateMetadata({ params }: DetailProps): Promise<Metadat
       title: data.title,
       description: data.content,
       openGraph: {
+        type: 'website',
+        locale: 'ko_KR',
+        siteName: 'ha0peno',
         title: data.title,
       }
     };
@@ -64,7 +67,7 @@ export default async function Detail({params} : DetailProps) {
     const modifiedHtmlString = dom.serialize();
 
     return (
-        <main className="bg-pink-50 dark:bg-gray-900 pt-1 sm:pt-10 pb-20 px-5 sm:px-10 h-fit">
+        <main className="bg-pink-50 dark:bg-gray-900 sm:pt-10 pb-20 sm:px-10 h-fit">
             <div className="mt-5 py-2 px-5 sm:p-10 md:p-20 lg:p-30 mx-auto max-w-5xl xl:max-w-6xl h-fit relative bg-white dark:bg-gray-800 shadow-md rounded-lg">
                 <div className="hidden 2xl:block absolute h-[calc(100%-250px)] top-[250px] right-[-350px] max-w-xs">
                     <Toc htmlString={ modifiedHtmlString } />
@@ -90,7 +93,7 @@ export default async function Detail({params} : DetailProps) {
                         }
                     </div>
                 </div>
-                <div className="prose dark:prose-invert max-w-none" dangerouslySetInnerHTML={{__html: modifiedHtmlString}} />
+                <div className="prose prose-sm sm:prose-base dark:prose-invert max-w-none" dangerouslySetInnerHTML={{__html: modifiedHtmlString}} />
                 <Comment />
                 <div className="mt-20 flex justify-between gap-3">
                 {

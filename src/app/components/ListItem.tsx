@@ -39,7 +39,7 @@ export default function ListItem({posts}: Props) {
                                     }
                                     </div>
                                     <h2 className="text-gray-900 dark:text-white text-xl my-3">{post.title}</h2>
-                                    <div className="text-gray-500 text-base font-normal mb-5 leading-normal text-ellipsis overflow-hidden line-clamp-3 h-18">
+                                    <div className="text-gray-500 font-normal mb-5 leading-normal text-ellipsis overflow-hidden line-clamp-3 h-18">
                                         {
                                             parseContentFromHTML(post.content)
                                         }

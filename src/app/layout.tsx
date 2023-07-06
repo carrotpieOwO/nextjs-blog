@@ -14,7 +14,14 @@ import HomeBtn from './components/nav/HomeBtn'
 import ReactQueryProvider from './ReactQueryProvider'
 import { Metadata } from 'next'
 
-const inter = Inter({ subsets: ['latin'] })
+
+import { Noto_Sans_KR } from "next/font/google"; // Roboto와 한글 NotoSans를 사용합니다.
+    
+const notoSansKr = Noto_Sans_KR({
+  subsets: ["latin"],
+  weight: ["100", "400", "700", "900"],
+});
+
 
 export const metadata:Metadata = {
   title: {
@@ -67,7 +74,7 @@ export default async function RootLayout({children,}: { children: React.ReactNod
   return (
     <html lang="en">
       <meta name="google-site-verification" content="aqC8RjvcEAuRUmytJpYNa0P1hZsJkxAi74fJXN0xFgc" />
-      <body className={inter.className}>
+      <body className={notoSansKr.className}>
         <Providers>
           <ReactQueryProvider>
             <header className='dark:bg-gray-800'>

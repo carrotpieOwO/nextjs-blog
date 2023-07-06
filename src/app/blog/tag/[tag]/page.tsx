@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         description: `Front-end 기술블로그 태그 검색: ${params.tag}`,
         openGraph: {
             title: params.tag,
-            description: `Front-end 기술블로그 검색: ${params.tag}`,
+            description: `Front-end 기술블로그 태그 검색: ${params.tag}`,
         }
     };
 }
