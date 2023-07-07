@@ -1,5 +1,4 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/pages/api/auth/[...nextauth]'
 import LogoutBtn from './components/nav/LogoutBtn'
