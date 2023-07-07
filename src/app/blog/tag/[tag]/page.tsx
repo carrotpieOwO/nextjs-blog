@@ -3,6 +3,7 @@ import TagList from "@/app/components/TagList";
 import { Post, TagObj } from "@/util";
 import { connectDB } from "@/util/database"
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export const revalidate = 60; // 60초 단위로 캐싱, 페이지단위로 캐싱가능
 
@@ -24,6 +25,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function List({params}:Props) {
     const db = (await connectDB).db('ha0peno')
     const posts = await db.collection('post').find({ tags: params.tag }).toArray();
+
+    if(posts.length < 1) {
+        return notFound()
+    }
     const uniqueTags = await db.collection('post').distinct('tags');
 
     const newResult:Post[] = posts.map(r => {

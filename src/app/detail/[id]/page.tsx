@@ -16,6 +16,7 @@ import TagBtn from "@/app/components/TagBtn"
 import NavigateBtn from "./NavigateBtn"
 import Comment from "./Comment"
 import { Metadata, ResolvingMetadata } from "next"
+import { notFound } from "next/navigation"
 
 
 
@@ -24,7 +25,7 @@ type DetailProps = {
 }
 export async function generateMetadata({ params }: DetailProps): Promise<Metadata> {
     const url = 'https://ha0.work/api/get/detail?id=' + params.id;
-    const data = await fetch(url).then((res) =>  res.json());
+    const data = await fetch(url).then((res) =>  res.json()).catch(err => notFound());
     
     return {
       title: data.title,
@@ -40,18 +41,27 @@ export async function generateMetadata({ params }: DetailProps): Promise<Metadat
 
 export default async function Detail({params} : DetailProps) {
     let session = await getServerSession(authOptions) // 현재 접속한 세션 정보
-
     const db = (await connectDB).db('ha0peno')
-    const result:WithId<Post> | null = await db.collection<Post>('post').findOne({ _id: new ObjectId(params.id) })
-    
+    let result:WithId<Post> | null;
+
+    try {
+        result = await(async () => {
+            return await db.collection<Post>('post').findOne({ _id: new ObjectId(params.id) })            
+        })();
+        console.log('result', result)
+        
+        if (!result) {
+            return notFound()
+        }
+    } catch (error) {
+        return notFound()
+    }
+
+
     const prevPost = await db.collection<Post>('post').findOne({ createdTime: { $lt: result!.createdTime } }, { projection: { _id: 1, title: 1 }, sort: { createdTime: -1 } });    
     const nextPost = await db.collection<Post>('post').findOne({ createdTime: { $gt: result!.createdTime } }, { projection: { _id: 1, title: 1 }, sort: { createdTime: 1 } });
 
-    if (!result) {
-        return false
-    }
-
-    const dom = new JSDOM(result.content);
+    const dom = new JSDOM(result!.content);
     const { document } = dom.window;
     const headings = document.querySelectorAll("h1, h2, h3");
     document.querySelectorAll('pre').forEach((el:HTMLElement) => {
@@ -74,21 +84,21 @@ export default async function Detail({params} : DetailProps) {
                 </div>
                 <div className="flex items-center mb-7">
                 {
-                    result.tags?.map( tag =>
+                    result!.tags?.map( tag =>
                         <TagBtn key={tag} url={`/blog/tag/${tag}`} text={ tag } />
                     )
                 }
                 </div>
-                <h4 className="font-semibold text-4xl mb-5">{result.title}</h4>
+                <h4 className="font-semibold text-4xl mb-5">{result!.title}</h4>
                 <div className="flex items-center justify-between pb-7 mb-16 border-b border-gray-400">
-                    <p className="text-sm sm:text-md text-gray-500">{dayjs(result.createdTime).format('YYYY. MM. DD.')}</p>
+                    <p className="text-sm sm:text-md text-gray-500">{dayjs(result!.createdTime).format('YYYY. MM. DD.')}</p>
                     <div className="flex gap-3">
-                        <p className="text-sm sm:text-md text-gray-500">by. {result.author}</p>
+                        <p className="text-sm sm:text-md text-gray-500">by. {result!.author}</p>
                         {
                             session?.user?.name === 'carrotpieOwO' &&
                             <>
                                 <Link href={`/edit/${params.id}`}>수정</Link>
-                                <DeleteBtn deleteId={params.id} images={result.images}/>
+                                <DeleteBtn deleteId={params.id} images={result!.images}/>
                             </>
                         }
                     </div>

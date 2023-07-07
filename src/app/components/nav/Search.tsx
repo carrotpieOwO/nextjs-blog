@@ -31,7 +31,7 @@ export default function Search() {
 
     return (
         <>
-            <div className={`px-3 sm:px-0 sm:mr-3 sm:mx-auto bg-pink-50 dark:bg-gray-900 
+            <div className={`px-3 sm:px-0 sm:mx-auto bg-pink-50 dark:bg-gray-900 
                 sm:dark:bg-transparent sm:bg-white ${openSearch? 'py-3 sm:py-0' : 'py-0'}`}
             >
                 <form onSubmit={ handleSubmit } className={`relative ${openSearch ? 'h-8' : 'h-0'}`}>

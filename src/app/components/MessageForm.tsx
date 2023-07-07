@@ -13,7 +13,6 @@ const createPost =  (data: Record<string, string>) => {
 export default function MessageForm () {
     const [ name, setName ] = useState('');
     const [ content, setContent ] = useState('');
-
     const [ nameError, setNameError ] = useState(false);
     const [ contentError, setContentError ] = useState('');
 
