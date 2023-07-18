@@ -6,6 +6,7 @@ import { authOptions } from "../auth/[...nextauth]"
 export default async function handler(req:NextApiRequest, res:NextApiResponse) {
     try {
         let session = await getServerSession(req, res, authOptions) // 현재 접속한 세션 정보
+        console.log('session', session)
 
         if(!session) {
             return res.status(200).json('권한없음')
