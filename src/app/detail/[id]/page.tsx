@@ -103,7 +103,7 @@ export default async function Detail({params} : DetailProps) {
                         }
                     </div>
                 </div>
-                <div className="prose prose-sm sm:prose-base dark:prose-invert max-w-none" dangerouslySetInnerHTML={{__html: modifiedHtmlString}} />
+                <div className="prose prose-sm sm:prose-base dark:prose-invert max-w-none pb-20 mb-20 border-b-2" dangerouslySetInnerHTML={{__html: modifiedHtmlString}} />
                 <Comment />
                 <div className="mt-20 flex justify-between gap-3">
                 {

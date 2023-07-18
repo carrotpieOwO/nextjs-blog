@@ -11,10 +11,6 @@ export const authOptions = {
       clientId: process.env.NEXT_PUBLIC_GIT_CLIENT_ID!,
       clientSecret: process.env.NEXT_PUBLIC_GIT_CLIENT_SECRET!,
     }),
-    GoogleProvider({
-      clientId: process.env.NEXT_PUBLIC_GOOGLE_ID!,
-      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_SECRET!,
-    }),
   ],
   secret: process.env.NEXT_PUBLIC_SECRET,
   adapter: MongoDBAdapter(connectDB as Promise<MongoClient>)

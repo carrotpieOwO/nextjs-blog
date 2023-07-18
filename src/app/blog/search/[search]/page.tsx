@@ -35,7 +35,7 @@ export default async function List({params}:Props) {
       },
     ];
 
-    const posts = await db.collection<Post>('post').aggregate(query).toArray()
+    const posts = await db.collection<Post>('post').aggregate(query).sort({ createdTime: -1 }).toArray()
 
     const newResult:Post[] = posts.map(r => {
         const rest = r as Post;

@@ -67,8 +67,7 @@ export default function Write() {
         try {
             await axios.post('/api/post/write', post)
             .then((res) => {
-                console.log('res', res)
-                router.push('/')
+                router.push(`/detail/${res.data}`)
             })
         } catch (error) {
             alert('write error')

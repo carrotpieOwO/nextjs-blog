@@ -44,7 +44,14 @@ export default function ListItem({posts}: Props) {
                                             parseContentFromHTML(post.content)
                                         }
                                     </div>
-                                    <p className="text-gray-500 font-light text-sm">{dayjs(post.createdTime).format('YYYY-MM-DD')}</p>
+                                    <div className="flex items-center gap-1.5">
+                                        <p className="text-gray-500 font-light text-sm">{dayjs(post.createdTime).format('YYYY-MM-DD')}</p>
+                                        {
+                                            post.createdTime &&
+                                            dayjs(post.createdTime).isAfter(dayjs().subtract(3, 'day')) &&
+                                            <span className="inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-pink-100 bg-pink-500 rounded-lg">NEW!</span>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function List({params}:Props) {
     const db = (await connectDB).db('ha0peno')
-    const posts = await db.collection('post').find({ tags: params.tag }).toArray();
+    const posts = await db.collection('post').find({ tags: params.tag }).sort({ createdTime: -1 }).toArray();
 
     if(posts.length < 1) {
         return notFound()

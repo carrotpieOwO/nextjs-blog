@@ -22,7 +22,7 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
             let result = await db.collection('post').insertOne(req.body)    
 
             console.log('new  id', result.insertedId)
-            return res.status(200).json('success')
+            return res.status(200).json(result.insertedId)
 
         } catch (error) {
             return res.status(500).json(error)  

@@ -15,7 +15,7 @@ export const metadata:Metadata = {
 
 export default async function Blog () {
     const db = (await connectDB).db('ha0peno')
-    const result:WithId<Post>[] = await db.collection<Post>('post').find().toArray()
+    const result:WithId<Post>[] = await db.collection<Post>('post').find().sort({ createdTime: -1 }).toArray()
     const uniqueTags = await db.collection('post').distinct('tags');
   
     const newResult = result.map(r  => {
