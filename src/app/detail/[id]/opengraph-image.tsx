@@ -1,3 +1,4 @@
+import { Post } from '@/util'
 import { ImageResponse } from 'next/server'
  
 export const runtime = 'edge'
@@ -11,7 +12,7 @@ export const contentType = 'image/png'
  
 export default async function Image({ params }: { params: { id: string } }) {
   const url = 'https://ha0.work/api/get/detail?id=' + params.id;
-  const post = await fetch(url).then((res) =>
+  const post:Post = await fetch(url).then((res) =>
     res.json()
   )
  
@@ -19,8 +20,14 @@ export default async function Image({ params }: { params: { id: string } }) {
     (
       <div
         style={{
-          fontSize: 48,
-          background: 'white',
+          fontSize: 60,
+          fontWeight: 'bold',
+          color: '#fff',
+          backgroundImage: `url(${post.thumbnail})`,
+          filter: 'blur(8px)',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
           width: '100%',
           height: '100%',
           display: 'flex',
