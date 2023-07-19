@@ -18,25 +18,32 @@ export default async function Image({ params }: { params: { id: string } }) {
  
   return new ImageResponse(
     (
-      <div
-        style={{
-          fontSize: 60,
+      <>
+        <div
+          style={{
+            backgroundImage: `url(${post.thumbnail})`,
+            filter: 'blur(8px)',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            width: '100%',
+            height: '100%'
+          }}
+        >
+        </div>
+        <div
+          style={{
+          fontSize: 100,
           fontWeight: 'bold',
           color: '#fff',
-          backgroundImage: `url(${post.thumbnail})`,
-          filter: 'blur(8px)',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-          backgroundSize: 'cover',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
+          justifyContent: 'center'
         }}
-      >
-        {post.title}
-      </div>
+        >{post.title}</div>
+      </>
     ),
     {
       ...size,
