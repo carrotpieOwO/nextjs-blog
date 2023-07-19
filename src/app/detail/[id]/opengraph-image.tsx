@@ -26,15 +26,8 @@ export default async function Image({ params }: { params: { id: string } }) {
           backgroundSize: 'cover',
           width: '100%',
           height: '100%',
-          fontSize: 100,
-          fontWeight: 'bold',
-          color: '#fff',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
         }}
       >
-        { post.title }
       </div>
     ),
     {
