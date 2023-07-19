@@ -18,7 +18,7 @@ export default async function Image({ params }: { params: { id: string } }) {
  
   return new ImageResponse(
     (
-      <>
+      <div>
         <div
           style={{
             backgroundImage: `url(${post.thumbnail})`,
@@ -42,8 +42,10 @@ export default async function Image({ params }: { params: { id: string } }) {
           alignItems: 'center',
           justifyContent: 'center'
         }}
-        >{post.title}</div>
-      </>
+        >
+          {post.title}
+        </div>
+      </div>
     ),
     {
       ...size,
