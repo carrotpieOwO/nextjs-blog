@@ -21,7 +21,11 @@ export default async function handler(req:NextApiRequest, res:NextApiResponse) {
             const db = (await connectDB).db('ha0peno')
             let result = await db.collection('post').insertOne(req.body)    
 
-            console.log('new  id', result.insertedId)
+            req.body.tags.forEach(async (tag:string) => {
+                let existingTag = await db.collection('tags').findOne({ name: tag });
+                !existingTag && db.collection('tags').insertOne({ name: tag })    
+            });
+            
             return res.status(200).json(result.insertedId)
 
         } catch (error) {

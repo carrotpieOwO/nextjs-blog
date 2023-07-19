@@ -74,7 +74,6 @@ export default function Edit({params} : Props) {
             // 최종적으로 사용하지 않은 이미지들은 storage에서 삭제
             missingFiles.forEach(async fileName => {
                 images.current = images.current?.filter(img => img.fileName !== fileName)
-                console.log('filename', fileName)
                 const desertRef = ref(storage, `images/${fileName}`);
 
                 try {

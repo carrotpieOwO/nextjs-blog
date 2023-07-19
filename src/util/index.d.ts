@@ -11,6 +11,11 @@ interface Post {
     createdTime?: string,
 }
 
+interface Tag {
+    _id: string | ObjectId,
+    name: string
+}
+
 interface Images {
     fileName: string;
     url: string;

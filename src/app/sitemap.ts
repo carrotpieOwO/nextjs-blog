@@ -1,6 +1,11 @@
+import { Post, Tag } from '@/util'
+import { getAllPosts, getAllTags } from '@/util/sitemapPosts'
 import { MetadataRoute } from 'next'
- 
-export default function sitemap(): MetadataRoute.Sitemap {
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const posts:Post[] | null = await getAllPosts()
+  const tags:Tag[] | null = await getAllTags()
+
   return [
     {
       url: 'https://ha0.work',
@@ -10,17 +15,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: 'https://ha0.work/blog',
       lastModified: new Date(),
     },
-    {
-        url: 'https://ha0.work/blog/tags/',
+    ...posts!.map((post) => {
+      return {
+        url: `https://ha0.work/detail/${post._id.toString()}`,
+        lastModified: new Date(post.createdTime!),
+      }
+    }),
+    ...tags!.map((tag) => {
+      return {
+        url: `https://ha0.work/blog/tag/${tag.name}`,
         lastModified: new Date(),
-    },
-    {
-        url: 'https://ha0.work/blog/search/',
-        lastModified: new Date(),
-    },
-    {
-      url: 'https://ha0.work/detail/',
-      lastModified: new Date(),
-    },
+      }
+    }),
   ]
 }
