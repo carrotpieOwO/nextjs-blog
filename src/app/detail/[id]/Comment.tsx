@@ -6,8 +6,8 @@ import React, { useEffect } from "react"
 const COMMENTS_ID = 'comments-container';
 
 export default function Comment() {
-    const { theme } = useTheme();
-    const utterancesTheme = theme === 'light' ? "github-light" : "photon-dark" ;
+    const { resolvedTheme } = useTheme();
+    const utterancesTheme = resolvedTheme === 'light' ? "github-light" : "photon-dark" ;
 
     useEffect(() => {
         const script = document.createElement('script');

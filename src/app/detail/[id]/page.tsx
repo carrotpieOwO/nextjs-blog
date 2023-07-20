@@ -107,10 +107,10 @@ export default async function Detail({params} : DetailProps) {
                 <Comment />
                 <div className="mt-20 flex justify-between gap-3">
                 {
-                    prevPost &&  <PrevNext url={`/detail/${prevPost._id}`} content={prevPost.title} direction="left" />
+                    nextPost &&  <PrevNext url={`/detail/${nextPost._id}`} content={nextPost.title} direction="left" />
                 }
                 {
-                    nextPost &&  <PrevNext url={`/detail/${nextPost._id}`} content={nextPost.title} direction="right" />
+                    prevPost &&  <PrevNext url={`/detail/${prevPost._id}`} content={prevPost.title} direction="right" />
                 }
                 </div>
             </div>

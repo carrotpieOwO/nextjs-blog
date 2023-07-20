@@ -33,7 +33,7 @@ export default function Menu () {
                 </>
             }
             <Link href='/blog' className='hover:text-pink-500' onClick={ handleClick }>Blog</Link>
-            <a href='https://github.com/carrotpieOwO' className="hover:text-pink-500" onClick={ handleClick }>GitHub</a>
+            <a href='https://github.com/carrotpieOwO' target="_blank" className="hover:text-pink-500" onClick={ handleClick }>GitHub</a>
         </div>
     )
 }
