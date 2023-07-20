@@ -50,13 +50,13 @@ export default function Toc({ htmlString }: {htmlString: string}) {
     }, [scrollPosition, tocList]);
 
     return (
-        <div className="sticky top-28 p-10 rounded-lg shadow bg-white dark:bg-gray-800 bg-opacity-50">
+        <div className="sticky top-28 p-10">
         {
             tocList.map(toc => 
                 <div key={toc.id} 
                     //id={toc.id}
-                    className={`cursor-pointer px-3 border-l-4 py-1 text-sm text-gray-500
-                        ${ activeItemId === toc.id ? 'bg-pink-50 border-pink-300' : 'bg-transparent border-pink-200' }
+                    className={`cursor-pointer px-3 border-l-4 py-1 text-sm 
+                        ${ activeItemId === toc.id ? 'bg-pink-100 border-pink-300 text-gray-500' : 'bg-transparent border-pink-200 dark:text-gray-200' }
                         ${toc.level === 2 ? 'pl-10' : toc.level === 3 ? 'pl-16' : 'pl-5'}`}
                     onClick={() => scrollToEl(toc.id) }
                 >

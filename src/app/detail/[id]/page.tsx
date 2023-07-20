@@ -77,11 +77,11 @@ export default async function Detail({params} : DetailProps) {
 
     return (
         <main className="bg-pink-50 dark:bg-gray-900 sm:pt-10 pb-20 sm:px-10 h-fit">
-            <div className="mt-5 py-2 px-5 sm:p-10 md:p-20 lg:p-30 mx-auto max-w-5xl xl:max-w-6xl h-fit relative bg-white dark:bg-gray-800 shadow-md rounded-lg">
-                <div className="hidden 2xl:block absolute h-[calc(100%-250px)] top-[250px] right-[-350px] max-w-xs">
+            <div className="mt-5 py-2 px-5 sm:p-10 md:p-20 lg:p-30 mx-auto max-w-4xl h-fit relative bg-white dark:bg-gray-800 shadow-md rounded-lg">
+                <div className="hidden xl:block absolute h-[calc(100%-250px)] top-[250px] right-[-300px] max-w-xs">
                     <Toc htmlString={ modifiedHtmlString } />
                 </div>
-                <div className="flex items-center mb-7">
+                <div className="flex gap-2 items-center mb-7">
                 {
                     result!.tags?.map( tag =>
                         <TagBtn key={tag} url={`/blog/tag/${tag}`} text={ tag } />
@@ -113,7 +113,7 @@ export default async function Detail({params} : DetailProps) {
                 }
                 </div>
             </div>
-            <div className="fixed bottom-10 hidden 2xl:grid 2xl:left-[calc(((100vw-1500px)/2)+1rem)] gap-5">
+            <div className="fixed bottom-10 hidden xl:grid 2xl:left-[calc(((100vw-1500px)/2)+1rem)] gap-5">
                 <NavigateBtn type="pageUp" />
                 <NavigateBtn type="back" />
             </div>
