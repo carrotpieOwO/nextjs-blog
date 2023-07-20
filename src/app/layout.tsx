@@ -73,6 +73,7 @@ export default async function RootLayout({children,}: { children: React.ReactNod
   return (
     <html lang="en">
       <meta name="google-site-verification" content="aqC8RjvcEAuRUmytJpYNa0P1hZsJkxAi74fJXN0xFgc" />
+      <meta name="naver-site-verification" content="98cd3a01dfd80547bcafef1b1b2686c6d302ca33" />
       <body className={notoSansKr.className} style={{ overflowX: 'hidden' }}>
         <Providers>
           <ReactQueryProvider>
