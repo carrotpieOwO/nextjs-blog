@@ -15,10 +15,9 @@ import 'highlight.js/styles/panda-syntax-dark.css';
 import TagBtn from "@/app/components/TagBtn"
 import NavigateBtn from "./NavigateBtn"
 import Comment from "./Comment"
-import { Metadata, ResolvingMetadata } from "next"
+import { Metadata } from "next"
 import { notFound } from "next/navigation"
-
-
+import { removeHtmlTags } from "@/util/functions"
 
 type DetailProps = {
     params: { id: string }
@@ -29,7 +28,7 @@ export async function generateMetadata({ params }: DetailProps): Promise<Metadat
     
     return {
       title: data.title,
-      description: data.content,
+      description: removeHtmlTags(data.content).substring(0, 150),
       openGraph: {
         type: 'website',
         locale: 'ko_KR',
