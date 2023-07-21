@@ -7,8 +7,8 @@ interface Prop {
 }
 export default function PrevNext({ url, content, direction }:Prop) {
     return (
-        <Link href={url} className={`relative inline-flex items-center justify-start w-64 py-3 overflow-hidden font-semibold text-pink-400 transition-all duration-150 ease-in-out rounded
-            ${ direction === 'left' ? 'pl-12 pr-4 hover:pl-6 hover:pr-10 mr-auto' : 'pl-4 pr-12 hover:pl-10 hover:pr-6 ml-auto' } bg-gray-100 dark:bg-gray-600 group`}>
+        <Link href={url} className={`relative inline-flex items-center justify-start min-w-[300px] w-full md:w-fit py-3 overflow-hidden font-semibold text-pink-400 transition-all duration-150 ease-in-out rounded-lg shadow-md
+            ${ direction === 'left' ? 'pl-12 pr-4 hover:pl-6 hover:pr-10 mr-auto' : 'pl-4 pr-12 hover:pl-10 hover:pr-6 ml-auto' } bg-white dark:bg-gray-600 group`}>
             <span className="absolute bottom-0 left-0 w-full h-1 transition-all duration-150 ease-in-out bg-pink-400 group-hover:h-full"></span>
             {
                 direction === 'left' ?

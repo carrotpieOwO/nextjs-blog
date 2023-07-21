@@ -102,18 +102,18 @@ export default async function Detail({params} : DetailProps) {
                         }
                     </div>
                 </div>
-                <div className="prose prose-sm sm:prose-base dark:prose-invert max-w-none pb-20 mb-20 border-b-2" dangerouslySetInnerHTML={{__html: modifiedHtmlString}} />
+                <div className="prose prose-sm sm:prose-base dark:prose-invert max-w-none pb-20 mb-20 border-b border-gray-300" dangerouslySetInnerHTML={{__html: modifiedHtmlString}} />
                 <Comment />
-                <div className="mt-20 flex justify-between gap-3">
+            </div>
+            <div className="w-[80%] sm:w-full mt-10 grid md:flex mx-auto max-w-4xl justify-stretch md:justify-between gap-3">
                 {
                     nextPost &&  <PrevNext url={`/detail/${nextPost._id}`} content={nextPost.title} direction="left" />
                 }
                 {
                     prevPost &&  <PrevNext url={`/detail/${prevPost._id}`} content={prevPost.title} direction="right" />
                 }
-                </div>
             </div>
-            <div className="fixed bottom-10 hidden xl:grid 2xl:left-[calc(((100vw-1500px)/2)+1rem)] gap-5">
+            <div className="fixed bottom-10 hidden lg:grid 2xl:left-[calc(((100vw-1500px)/2)+1rem)] gap-5">
                 <NavigateBtn type="pageUp" />
                 <NavigateBtn type="back" />
             </div>
