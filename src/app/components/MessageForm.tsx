@@ -70,9 +70,10 @@ export default function MessageForm () {
         const isValidContent = checkContent(content);
         if( isValidName || isValidContent ) return
         
-        
         mutate({ name, content, createdTime: dayjs().format('YYYY-MM-DDTHH:mm:ss')});
         
+        setName('');
+        setContent('');
     }
 
     return (
