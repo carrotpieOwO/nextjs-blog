@@ -7,10 +7,6 @@ import { storage } from '@/util/firebase/config';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { PreviewStyle } from '@toast-ui/editor';
 import { Images } from '@/util';
-import 'prismjs/themes/prism.css'
-import codeSyntaxHighlight from '@toast-ui/editor-plugin-code-syntax-highlight'
-import '@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css'
-import Prism from 'prismjs'
 
 const toolbarItems = [
     ['heading', 'bold', 'italic', 'strike'],
@@ -89,7 +85,7 @@ export default function MyEditor({ editorRef, images, initialValue }: Props) {
                   usageStatistics={false}
                   toolbarItems={toolbarItems}
                   useCommandShortcut={true}
-                  plugins={[colorSyntax, [codeSyntaxHighlight, { highlighter: Prism }]]} // 추가!
+                  plugins={[colorSyntax]}
                   hooks={{ addImageBlobHook: onUploadImage }}
                 />
               </>

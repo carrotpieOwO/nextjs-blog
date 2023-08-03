@@ -84,7 +84,7 @@ export default async function RootLayout({children,}: { children: React.ReactNod
                     <HomeBtn />
                     <Link href='/blog' className='hover:text-pink-500 cursor-pointer hidden sm:inline-block'>BLOG</Link>
                   </div>
-                  <div className='flex items-center space-x-2'>
+                  <div className='flex items-center gap-3'>
                     <SearchBtn />
                     <div className='hidden sm:inline-flex'>
                       <Search />
