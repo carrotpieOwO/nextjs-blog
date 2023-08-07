@@ -40,6 +40,11 @@ module.exports = {
               marginTop:'3em!important',
               fontSize: '2em!important',
             },
+            li: {
+              p: {
+                margin: 0
+              }
+            },
             blockquote: {
               p: {
                 overflow: 'auto'
