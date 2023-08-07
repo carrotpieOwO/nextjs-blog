@@ -9,7 +9,6 @@ interface Toc {
     level: number
 }
 export default function Toc({ htmlString }: {htmlString: string}) {
-    //const htmlString = "<h1>제목 1</h1><h2>소제목 1</h2><h2>소제목 2</h2><h3>세부 제목 1</h3><h1>제목 2</h1>";
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlString, "text/html");
     const headings = doc.querySelectorAll("h1, h2, h3");
@@ -22,12 +21,6 @@ export default function Toc({ htmlString }: {htmlString: string}) {
         const id = heading.id
         tocList.push({ id, text, level });
     });
-
-    tocList.forEach((item: any) => {
-        const { text, level } = item;
-        const indent = "  ".repeat(level - 1);
-    });
-
 
     const activeItemId = useMemo(() => {
         // 전달받은 headerItem의 id값으로 각 헤더의 offsetTop 값을 배열로 저장한다.
@@ -54,7 +47,6 @@ export default function Toc({ htmlString }: {htmlString: string}) {
         {
             tocList.map(toc => 
                 <div key={toc.id} 
-                    //id={toc.id}
                     className={`cursor-pointer px-3 border-l-4 py-1 text-sm 
                         ${ activeItemId === toc.id ? 'bg-pink-100 border-pink-300 text-gray-500' : 'bg-transparent border-pink-200 dark:text-gray-200' }
                         ${toc.level === 2 ? 'pl-10' : toc.level === 3 ? 'pl-16' : 'pl-5'}`}

@@ -36,6 +36,10 @@ module.exports = {
               fontWeight: "400",
               "border-radius": "0.25rem"
             },
+            h1: {
+              marginTop:'3em!important',
+              fontSize: '2em!important',
+            },
             blockquote: {
               p: {
                 overflow: 'auto'
