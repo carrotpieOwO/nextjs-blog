@@ -1,5 +1,5 @@
 import { Metadata } from "next"
-import Scene from "../components/three/Scene"
+// import Scene from "../components/three/Scene"
 
 export const metadata:Metadata = {
     title: {
@@ -25,7 +25,7 @@ export default function BlogLayout({ children, params }: {
     return (
         <>
             {children}
-            <Scene page='blog' />
+            {/* <Scene page='blog' /> */}
         </>
     )
   }
