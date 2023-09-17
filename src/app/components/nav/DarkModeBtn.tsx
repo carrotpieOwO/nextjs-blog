@@ -35,14 +35,12 @@ export default function DarkModeBtn() {
     return (
         <div>
             <button 
+                title="toggleTheme"
                 className="w-10 h-5 mr-2 sm:mr-0 rounded-full bg-pink-100 dark:bg-white flex items-center transition duration-300 focus:outline-none shadow"
                 onClick={() => {
                     setTheme( currentTheme === 'dark' ? 'light' : 'dark')
                 }}
             >
-                <span className="hidden opacity-0 text-opacity-0 w-0 h-0">
-                    ChangeTheme
-                </span>
                 {
                     currentTheme === 'dark' ? 
                         <div
