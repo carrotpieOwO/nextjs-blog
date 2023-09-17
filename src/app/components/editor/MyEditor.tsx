@@ -7,6 +7,7 @@ import { storage } from '@/util/firebase/config';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { PreviewStyle } from '@toast-ui/editor';
 import { Images } from '@/util';
+import imageCompression from 'browser-image-compression';
 
 const toolbarItems = [
     ['heading', 'bold', 'italic', 'strike'],
@@ -54,9 +55,17 @@ export default function MyEditor({ editorRef, images, initialValue }: Props) {
   const onUploadImage = async (blob:Blob, callback: (url: string, altText?: string) => void) => {
     const fileName = `${Date.now().toString()}_${blob.name}`;
     const storageRef = ref(storage, `images/${fileName}`);
-    
+    const imageFile = new File([blob], fileName, { type: 'image/jpeg' });
+
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+    }
+
     try {
-      const snapshot = await uploadBytes(storageRef, blob);
+      const compressdFile = await imageCompression(imageFile, options)
+      const snapshot = await uploadBytes(storageRef, compressdFile);
       const url = await getDownloadURL(snapshot.ref);
       images.current = Array.isArray(images.current) ? [...images.current, {fileName: fileName, url: url.replaceAll(/&/g, '&amp;')}] : [{fileName: fileName, url: url.replaceAll(/&/g, '&amp;')}]
   
