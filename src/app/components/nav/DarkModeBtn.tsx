@@ -40,6 +40,9 @@ export default function DarkModeBtn() {
                     setTheme( currentTheme === 'dark' ? 'light' : 'dark')
                 }}
             >
+                <span className="hidden opacity-0 text-opacity-0 w-0 h-0">
+                    ChangeTheme
+                </span>
                 {
                     currentTheme === 'dark' ? 
                         <div

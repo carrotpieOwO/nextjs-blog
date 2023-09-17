@@ -24,7 +24,7 @@ export default function PosCard({post}: Props) {
     const isVisible = useVisibility(ref);
 
     return (
-        <Link href={`/detail/${post._id}`} ref={ref}>
+        <Link href={`/detail/${post._id}`} ref={ref} aria-label={post.title}>
             {
                 isVisible &&
                     <div className="relative bg-white dark:bg-gray-800 pb-10 shadow-md ring-1 ring-gray-900/5 sm:mx-auto md:max-w-lg sm:rounded-lg duration-300 hover:scale-105">
