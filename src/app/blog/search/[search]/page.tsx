@@ -9,6 +9,7 @@ export const revalidate = 60; // 60초 단위로 캐싱, 페이지단위로 캐�
 type Props = {
     params: { search: string }
 }
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const search = decodeURIComponent(params.search)
     return {
